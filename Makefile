@@ -36,6 +36,7 @@ run: build
 release:
 	${GOGET} -u github.com/mitchellh/gox
 	${GOX} -ldflags "${LD_FLAGS}" ${GOX_ARGS}
+	shasum -a 512 build/* > build/sha512sums.txt
 
 docker:
 	docker build --rm --force-rm --no-cache -t systemli/prometheus-jitsi-meet-exporter .

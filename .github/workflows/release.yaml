@@ -59,3 +59,13 @@ jobs:
           asset_path: build/prometheus-jitsi-meet-exporter-linux-amd64
           asset_name: prometheus-jitsi-meet-exporter-linux-amd64
           asset_content_type: application/octet-stream
+      - name: Upload release artifacts (shasums)
+        id: upload-release-asset-sha512sums
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: build/sha512sums.txt
+          asset_name: sha512sums.txt
+          asset_content_type: application/octet-stream
