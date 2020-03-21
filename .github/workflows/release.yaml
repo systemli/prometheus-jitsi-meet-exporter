@@ -17,6 +17,8 @@ jobs:
           go-version: '1.14.x'
       - name: Create release artifacts
         run: make release
+        env:
+          GOPATH: ${{ github.workspace }}/go
       - name: Create Github Release
         id: create_release
         uses: actions/create-release@v1
@@ -28,29 +30,32 @@ jobs:
           draft: false
           prerelease: false
       - name: Upload release artifacts (Mac OS amd64)
-        id: upload-release-asset
+        id: upload-release-asset-mac
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/prometheus-jitsi-meet-exporter-${{ github.ref }}-darwin-amd64
+          asset_path: build/prometheus-jitsi-meet-exporter-darwin-amd64
+          asset_name: prometheus-jitsi-meet-exporter-darwin-amd64
           asset_content_type: application/octet-stream
       - name: Upload release artifacts (FreeBSD amd64)
-        id: upload-release-asset
+        id: upload-release-asset-freebsd
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/prometheus-jitsi-meet-exporter-${{ github.ref }}-freebsd-amd64
+          asset_path: build/prometheus-jitsi-meet-exporter-freebsd-amd64
+          asset_name: prometheus-jitsi-meet-exporter-freebsd-amd64
           asset_content_type: application/octet-stream
       - name: Upload release artifacts (Linux amd64)
-        id: upload-release-asset
+        id: upload-release-asset-linux
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: build/prometheus-jitsi-meet-exporter-${{ github.ref }}-freebsd-amd64
+          asset_path: build/prometheus-jitsi-meet-exporter-linux-amd64
+          asset_name: prometheus-jitsi-meet-exporter-linux-amd64
           asset_content_type: application/octet-stream

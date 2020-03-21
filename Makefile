@@ -7,10 +7,7 @@ GOGET        = $(GOCMD) get
 GOX          = $(GOPATH)/bin/gox
 GOGET        = $(GOCMD) get
 
-GIT_VERSION  := $(shell git --no-pager describe --tags --always)
-GIT_COMMIT   := $(shell git rev-parse --verify HEAD)
-
-GOX_ARGS     = -output="$(BUILD_DIR)/{{.Dir}}-${GIT_VERSION}-{{.OS}}-{{.Arch}}" -osarch="linux/amd64 darwin/amd64 freebsd/amd64"
+GOX_ARGS     = -output="$(BUILD_DIR)/{{.Dir}}-{{.OS}}-{{.Arch}}" -osarch="linux/amd64 darwin/amd64 freebsd/amd64"
 
 BUILD_DIR    = build
 BINARY_NAME  = prometheus-jitsi-meet-exporter
