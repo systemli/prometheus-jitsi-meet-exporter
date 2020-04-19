@@ -23,7 +23,7 @@ docker run -p 9888:9888 systemli/prometheus-jitsi-meet-exporter:latest -videobri
 
 ## Dashboard
 
-See the [Grafana Dashboard](dashboards/jitsi-meet.png) in this repository or import it from [grafana.com/dashboards](https://grafana.com/grafana/dashboards/12098).
+See the [Grafana Dashboard](dashboards/jitsi-meet.json) in this repository or import it from [grafana.com/dashboards](https://grafana.com/grafana/dashboards/12098).
 
 ![Jitsi Meet Dashboard](dashboards/jitsi-meet.png)
 
