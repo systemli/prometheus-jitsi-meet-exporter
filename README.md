@@ -15,6 +15,18 @@ go install github.com/systemli/prometheus-jitsi-meet-exporter
 $GOPATH/bin/prometheus-jitsi-meet-exporter
 ```
 
+### Ansible
+
+We also provide an [Ansible Role to install and configure the Jitsi Meet Exporter](https://github.com/systemli/ansible-role-jitsi-meet-exporter).
+
+Example Playbook:
+
+```yaml
+- hosts: jitsimeetservers
+  roles:
+     - { role: systemli.jitsi_meet_exporter }
+```
+
 ### Docker
 
 ```
