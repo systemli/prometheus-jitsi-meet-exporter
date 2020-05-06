@@ -35,6 +35,7 @@ type videoBridgeStats struct {
 	TotalLossDegradedParticipantSeconds   int     `json:"total_loss_degraded_participant_seconds"`
 	TotalConferenceSeconds                int     `json:"total_conference_seconds"`
 	TotalConferencesCreated               int     `json:"total_conferences_created"`
+	TotalConferencesCompleted             int     `json:"total_conferences_completed"`
 	TotalFailedConferences                int     `json:"total_failed_conferences"`
 	TotalPartiallyFailedConferences       int     `json:"total_partially_failed_conferences"`
 	TotalDataChannelMessagesReceived      int     `json:"total_data_channel_messages_received"`
@@ -104,6 +105,9 @@ jitsi_total_conference_seconds {{.TotalConferenceSeconds}}
 # HELP jitsi_total_conferences_created The total number of conferences created on the bridge.
 # TYPE jitsi_total_conferences_created counter
 jitsi_total_conferences_created {{.TotalConferencesCreated}}
+# HELP jitsi_total_conferences_completed The total number of conferences completed on the bridge.
+# TYPE jitsi_total_conferences_completed counter
+jitsi_total_conferences_completed {{.TotalConferencesCompleted}}
 # HELP jitsi_total_failed_conferences The total number of failed conferences on the bridge. A conference is marked as failed when all of its channels have failed. A channel is marked as failed if it had no payload activity.
 # TYPE jitsi_total_failed_conferences counter
 jitsi_total_failed_conferences {{.TotalFailedConferences}}

@@ -22,7 +22,7 @@ func TestGetMetrics(t *testing.T) {
 		expected  string
 	}{
 		{
-			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_recording_failures":0,"conferences":2,"total_live_streaming_failures":0,"participants":4}`,
+			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_conferences_completed":0,"total_recording_failures":0,"conferences":2,"total_live_streaming_failures":0,"participants":4}`,
 			expected: `# HELP jitsi_threads The number of Java threads that the video bridge is using.
 # TYPE jitsi_threads gauge
 jitsi_threads 0
@@ -83,6 +83,9 @@ jitsi_total_conference_seconds 0
 # HELP jitsi_total_conferences_created The total number of conferences created on the bridge.
 # TYPE jitsi_total_conferences_created counter
 jitsi_total_conferences_created 14
+# HELP jitsi_total_conferences_completed The total number of conferences completed on the bridge.
+# TYPE jitsi_total_conferences_completed counter
+jitsi_total_conferences_completed 0
 # HELP jitsi_total_failed_conferences The total number of failed conferences on the bridge. A conference is marked as failed when all of its channels have failed. A channel is marked as failed if it had no payload activity.
 # TYPE jitsi_total_failed_conferences counter
 jitsi_total_failed_conferences 0
@@ -212,6 +215,9 @@ jitsi_total_conference_seconds 470
 # HELP jitsi_total_conferences_created The total number of conferences created on the bridge.
 # TYPE jitsi_total_conferences_created counter
 jitsi_total_conferences_created 1
+# HELP jitsi_total_conferences_completed The total number of conferences completed on the bridge.
+# TYPE jitsi_total_conferences_completed counter
+jitsi_total_conferences_completed 1
 # HELP jitsi_total_failed_conferences The total number of failed conferences on the bridge. A conference is marked as failed when all of its channels have failed. A channel is marked as failed if it had no payload activity.
 # TYPE jitsi_total_failed_conferences counter
 jitsi_total_failed_conferences 0
