@@ -11,10 +11,16 @@
   ],
   "__requires": [
     {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.7.3"
+      "version": "7.0.0"
     },
     {
       "type": "panel",
@@ -30,12 +36,6 @@
     },
     {
       "type": "panel",
-      "id": "singlestat",
-      "name": "Singlestat",
-      "version": ""
-    },
-    {
-      "type": "panel",
       "id": "stat",
       "name": "Stat",
       "version": ""
@@ -44,7 +44,6 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:114",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -60,7 +59,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1589355225025,
+  "iteration": 1589881312938,
   "links": [],
   "panels": [
     {
@@ -77,23 +76,43 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
-      ],
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": null,
       "description": "Busy state of all CPU cores together",
-      "format": "percent",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": true,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "max": 100,
+          "min": 0,
+          "nullValueMode": "null",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 85
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 95
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -104,39 +123,24 @@
       "id": 44,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "maxPerRow": 12,
-      "nullPointMode": "null",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "(((count(count(node_cpu_seconds_total{instance=~\"$instance.*\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=~\"$instance.*\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=~\"$instance.*\"}) by (cpu))",
@@ -148,38 +152,41 @@
           "step": 900
         }
       ],
-      "thresholds": "85,95",
       "title": "CPU Busy",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "gauge"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": true,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
-      ],
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": 0,
       "description": "Non available RAM memory",
-      "format": "percent",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": true,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "nullValueMode": "null",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "rgba(50, 172, 45, 0.97)",
+                "value": null
+              },
+              {
+                "color": "rgba(237, 129, 40, 0.89)",
+                "value": 80
+              },
+              {
+                "color": "rgba(245, 54, 54, 0.9)",
+                "value": 90
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 5,
@@ -191,39 +198,24 @@
       "id": 46,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "maxPerRow": 6,
-      "nullPointMode": "null",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "((node_memory_MemTotal_bytes{instance=~\"$instance.*\"} - node_memory_MemFree_bytes{instance=~\"$instance.*\"}) / (node_memory_MemTotal_bytes{instance=~\"$instance.*\"} )) * 100",
@@ -246,16 +238,30 @@
           "step": 900
         }
       ],
-      "thresholds": "80,90",
       "title": "Used RAM Memory",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [],
-      "valueName": "current"
+      "type": "gauge"
     },
     {
       "datasource": "${DS_PROMETHEUS}",
       "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "displayName": "",
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "semi-dark-green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "decgbytes"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 5,
         "w": 12,
@@ -265,32 +271,17 @@
       "id": 48,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "center",
+        "orientation": "vertical",
+        "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "semi-dark-green",
-                  "value": null
-                }
-              ]
-            },
-            "title": "",
-            "unit": "decgbytes"
-          },
-          "overrides": [],
           "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "center",
-        "orientation": "vertical"
+        }
       },
-      "pluginVersion": "6.7.3",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "sum(node_network_receive_bytes_total{instance=~\"$instance.*\"})*(9.31*10^-10)",
@@ -320,22 +311,33 @@
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The total incoming bitrate for the video bridge in kilobits per second.",
-      "format": "Kbits",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -346,43 +348,25 @@
       "id": 18,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:107",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:108",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_bit_rate_download{instance=~\"$instance.*\"}",
@@ -391,40 +375,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Bitrate Download",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:110",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The total outgoing bitrate for the video bridge in kilobits per second.",
-      "format": "Kbits",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "Kbits"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -435,43 +419,25 @@
       "id": 19,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:148",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:149",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_bit_rate_upload{instance=~\"$instance.*\"}",
@@ -480,40 +446,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Bitrate Upload",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:151",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The number of Java threads that the video bridge is using.",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -524,43 +490,25 @@
       "id": 9,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:212",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:213",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_threads{instance=~\"$instance.*\"}",
@@ -569,40 +517,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Threads",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:215",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "An estimation of the number of current video streams forwarded by the bridge.",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -613,43 +561,25 @@
       "id": 20,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:250",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:251",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_videostreams{instance=~\"$instance.*\"}",
@@ -658,41 +588,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Videostreams",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:253",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
-      "decimals": null,
       "description": "An average value (in milliseconds) of the RTT across all streams.",
-      "format": "ms",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -703,43 +632,25 @@
       "id": 22,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:291",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:292",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_rtt_aggregate{instance=~\"$instance.*\"}",
@@ -748,40 +659,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "RTT",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:294",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The sum of the lengths of all completed conferences, in seconds.",
-      "format": "s",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "s"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -792,43 +703,25 @@
       "id": 21,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:378",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:379",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": false,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_total_conference_seconds{instance=~\"$instance.*\"}",
@@ -837,40 +730,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Completed Conferences",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:381",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The number of participants in the largest conference currently hosted on the bridge.",
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -881,43 +774,25 @@
       "id": 10,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:416",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:417",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "max"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "max(jitsi_largest_conference{instance=~\"$instance.*\"})",
@@ -926,40 +801,40 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Biggest Conference",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:419",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "max"
+      "type": "stat"
     },
     {
       "cacheTimeout": null,
-      "colorBackground": false,
-      "colorValue": false,
-      "colors": [
-        "#299c46",
-        "rgba(237, 129, 40, 0.89)",
-        "#d44a3a"
-      ],
       "datasource": "${DS_PROMETHEUS}",
       "description": "The total number of conferences created on the bridge.",
-      "format": "short",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
       },
       "gridPos": {
         "h": 4,
@@ -970,43 +845,25 @@
       "id": 8,
       "interval": null,
       "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "$$hashKey": "object:457",
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "$$hashKey": "object:458",
-          "name": "range to text",
-          "value": 2
-        }
-      ],
       "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "pluginVersion": "6.7.2",
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "values": false
         }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(31, 118, 189, 0.18)",
-        "full": false,
-        "lineColor": "rgb(31, 120, 193)",
-        "show": true,
-        "ymax": null,
-        "ymin": null
       },
-      "tableColumn": "",
+      "pluginVersion": "7.0.0",
       "targets": [
         {
           "expr": "jitsi_total_conferences_created{instance=~\"$instance.*\"}",
@@ -1015,21 +872,10 @@
           "refId": "A"
         }
       ],
-      "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
       "title": "Total Conferences",
-      "type": "singlestat",
-      "valueFontSize": "80%",
-      "valueMaps": [
-        {
-          "$$hashKey": "object:460",
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "current"
+      "type": "stat"
     },
     {
       "aliasColors": {},
@@ -1039,8 +885,14 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "The current number of conferences.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 10,
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -1130,8 +982,14 @@
       "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "The current number of participants.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fill": 1,
-      "fillGradient": 0,
+      "fillGradient": 10,
       "gridPos": {
         "h": 8,
         "w": 12,
@@ -1192,7 +1050,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:831",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1201,7 +1058,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:832",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1265,7 +1121,6 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "$$hashKey": "object:616",
               "alias": "upload",
               "transform": "negative-Y"
             }
@@ -1309,7 +1164,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:509",
               "format": "Kbits",
               "label": null,
               "logBase": 1,
@@ -1318,7 +1172,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:510",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1371,7 +1224,6 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "$$hashKey": "object:616",
               "alias": "upload",
               "transform": "negative-Y"
             }
@@ -1415,7 +1267,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:509",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1424,7 +1275,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:510",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1477,7 +1327,6 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "$$hashKey": "object:616",
               "alias": "upload",
               "transform": "negative-Y"
             }
@@ -1521,7 +1370,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:509",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1530,7 +1378,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:510",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1613,7 +1460,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:931",
               "format": "ms",
               "label": null,
               "logBase": 1,
@@ -1622,7 +1468,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:932",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1705,7 +1550,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:931",
               "format": "ms",
               "label": null,
               "logBase": 1,
@@ -1714,7 +1558,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:932",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1803,7 +1646,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1812,7 +1654,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1895,7 +1736,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1904,7 +1744,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1987,7 +1826,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -1996,7 +1834,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2079,7 +1916,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2088,7 +1924,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2171,7 +2006,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2180,7 +2014,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2263,7 +2096,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2272,7 +2104,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2325,7 +2156,6 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "$$hashKey": "object:1499",
               "alias": "sent",
               "transform": "negative-Y"
             }
@@ -2367,7 +2197,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2376,7 +2205,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2429,7 +2257,6 @@
           "renderer": "flot",
           "seriesOverrides": [
             {
-              "$$hashKey": "object:1499",
               "alias": "sent",
               "transform": "negative-Y"
             }
@@ -2471,7 +2298,6 @@
           },
           "yaxes": [
             {
-              "$$hashKey": "object:1107",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2480,7 +2306,6 @@
               "show": true
             },
             {
-              "$$hashKey": "object:1108",
               "format": "short",
               "label": null,
               "logBase": 1,
@@ -2500,7 +2325,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 22,
+  "schemaVersion": 25,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2512,7 +2337,6 @@
         "definition": "label_values(jitsi_conferences, instance)",
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "instance",
         "multi": false,
         "name": "instance",
@@ -2536,7 +2360,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
@@ -2551,8 +2374,5 @@
   "timezone": "",
   "title": "Jitsi Meet & System",
   "uid": "IJXK9Q6Wz",
-  "variables": {
-    "list": []
-  },
-  "version": 4
+  "version": 8
 }
