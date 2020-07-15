@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"text/template"
@@ -11,6 +12,8 @@ import (
 var (
 	addr           = flag.String("web.listen-address", ":9888", "Address on which to expose metrics and web interface.")
 	videoBridgeURL = flag.String("videobridge-url", "http://localhost:8888/stats", "Jitsi Videobridge /stats URL to scrape")
+	user           = flag.String("web.user", "", "User name for http basic authentication.")
+	password       = flag.String("web.password", "", "Password for http basic authentication.")
 )
 
 type videoBridgeStats struct {
@@ -130,13 +133,27 @@ jitsi_total_colibri_web_socket_messages_sent {{.TotalColibriWebSocketMessagesSen
 
 type handler struct {
 	sourceURL string
+	user      string
+	password  string
 }
 
 func (h handler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	resp, err := http.Get(h.sourceURL)
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", h.sourceURL, nil)
+	if len(h.user) > 0 && len(h.password) > 0 {
+		req.SetBasicAuth(h.user, h.password)
+	}
+	resp, err := client.Do(req)
+
 	if err != nil {
 		log.Printf("scrape error: %v", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if resp.StatusCode != 200 {
+		msg := fmt.Sprintf("HTTP Status %d", resp.StatusCode)
+		log.Printf("scrape error: %s", msg)
+		http.Error(w, msg, http.StatusInternalServerError)
 		return
 	}
 	defer resp.Body.Close()
@@ -156,7 +173,7 @@ func main() {
 	log.SetFlags(0)
 	flag.Parse()
 
-	http.Handle("/metrics", handler{sourceURL: *videoBridgeURL})
+	http.Handle("/metrics", handler{sourceURL: *videoBridgeURL, user: *user, password: *password})
 	if err := http.ListenAndServe(*addr, nil); err != nil {
 		log.Fatal(err)
 	}
