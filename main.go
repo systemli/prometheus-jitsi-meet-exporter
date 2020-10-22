@@ -17,8 +17,8 @@ type videoBridgeStats struct {
 	Threads                               int     `json:"threads"`
 	BitRateDownload                       int     `json:"bit_rate_download"`
 	BitRateUpload                         int     `json:"bit_rate_upload"`
-	PacketRateDownload                    int     `json:"packet_rate_download"`
-	PacketRateUpload                      int     `json:"packet_rate_upload"`
+	PacketRateDownload                    float64 `json:"packet_rate_download"`
+	PacketRateUpload                      float64 `json:"packet_rate_upload"`
 	LossRateDownload                      float64 `json:"loss_rate_download"`
 	LossRateUpload                        float64 `json:"loss_rate_upload"`
 	JitterAggregate                       float64 `json:"jitter_aggregate"`
