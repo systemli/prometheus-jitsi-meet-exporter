@@ -109,8 +109,8 @@ jitsi_total_colibri_web_socket_messages_sent 0
 		{
 			statsJson: `{
   "audiochannels": 0,
-  "bit_rate_download": 0,
-  "bit_rate_upload": 0,
+  "bit_rate_download": 0.5,
+  "bit_rate_upload": 0.5,
   "conference_sizes": [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   "conferences": 0,
   "current_timestamp": "2019-03-14 11:02:15.184",
@@ -160,10 +160,10 @@ jitsi_total_colibri_web_socket_messages_sent 0
 jitsi_threads 59
 # HELP jitsi_bit_rate_download The total incoming bitrate for the video bridge in kilobits per second.
 # TYPE jitsi_bit_rate_download gauge
-jitsi_bit_rate_download 0
+jitsi_bit_rate_download 0.5
 # HELP jitsi_bit_rate_upload The total outgoing bitrate for the video bridge in kilobits per second.
 # TYPE jitsi_bit_rate_upload gauge
-jitsi_bit_rate_upload 0
+jitsi_bit_rate_upload 0.5
 # HELP jitsi_packet_rate_download The total incoming packet rate for the video bridge in packets per second.
 # TYPE jitsi_packet_rate_download gauge
 jitsi_packet_rate_download 0
