@@ -117,8 +117,8 @@ jitsi_total_colibri_web_socket_messages_sent 0
   "graceful_shutdown": false,
   "jitter_aggregate": 0,
   "largest_conference": 0,
-  "loss_rate_download": 0,
-  "loss_rate_upload": 0,
+  "loss_rate_download": 0.5,
+  "loss_rate_upload": 0.5,
   "packet_rate_download": 0,
   "packet_rate_upload": 0,
   "participants": 0,
@@ -172,10 +172,10 @@ jitsi_packet_rate_download 0
 jitsi_packet_rate_upload 0
 # HELP jitsi_loss_rate_download The fraction of lost incoming RTP packets. This is based on RTP sequence numbers and is relatively accurate.
 # TYPE jitsi_loss_rate_download gauge
-jitsi_loss_rate_download 0
+jitsi_loss_rate_download 0.5
 # HELP jitsi_loss_rate_upload The fraction of lost outgoing RTP packets. This is based on incoming RTCP Receiver Reports, and an attempt to subtract the fraction of packets that were not sent (i.e. were lost before they reached the bridge). Further, this is averaged over all streams of all users as opposed to all packets, so it is not correctly weighted. This is not accurate, but may be a useful metric nonetheless.
 # TYPE jitsi_loss_rate_upload gauge
-jitsi_loss_rate_upload 0
+jitsi_loss_rate_upload 0.5
 # HELP jitsi_jitter_aggregate Experimental. An average value (in milliseconds) of the jitter calculated for incoming and outgoing streams. This hasn't been tested and it is currently not known whether the values are correct or not.
 # TYPE jitsi_jitter_aggregate gauge
 jitsi_jitter_aggregate 0
