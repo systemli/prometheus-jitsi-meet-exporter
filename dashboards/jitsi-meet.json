@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "7.0.0"
+      "version": "7.3.7"
     },
     {
       "type": "panel",
@@ -53,7 +53,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1589881340817,
+  "iteration": 1611864152470,
   "links": [],
   "panels": [
     {
@@ -124,10 +124,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_bit_rate_download{instance=~\"$instance.*\"}",
@@ -195,10 +197,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_bit_rate_upload{instance=~\"$instance.*\"}",
@@ -266,10 +270,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_threads{instance=~\"$instance.*\"}",
@@ -337,10 +343,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_videostreams{instance=~\"$instance.*\"}",
@@ -408,10 +416,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_rtt_aggregate{instance=~\"$instance.*\"}",
@@ -479,10 +489,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_total_conference_seconds{instance=~\"$instance.*\"}",
@@ -550,10 +562,12 @@
           "calcs": [
             "max"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "max(jitsi_largest_conference{instance=~\"$instance.*\"})",
@@ -621,10 +635,12 @@
           "calcs": [
             "last"
           ],
+          "fields": "",
           "values": false
-        }
+        },
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.0",
+      "pluginVersion": "7.3.7",
       "targets": [
         {
           "expr": "jitsi_total_conferences_created{instance=~\"$instance.*\"}",
@@ -648,7 +664,8 @@
       "description": "The current number of conferences.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -676,9 +693,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -745,7 +763,8 @@
       "description": "The current number of participants.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {},
+          "links": []
         },
         "overrides": []
       },
@@ -773,9 +792,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.3.7",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2086,7 +2106,7 @@
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 25,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -2096,6 +2116,7 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(jitsi_conferences, instance)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "instance",
@@ -2135,5 +2156,5 @@
   "timezone": "",
   "title": "Jitsi Meet",
   "uid": "wX13E8RGz",
-  "version": 4
+  "version": 1
 }
