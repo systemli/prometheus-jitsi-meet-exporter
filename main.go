@@ -28,6 +28,7 @@ type videoBridgeStats struct {
 	AudioChannels                         int     `json:"audiochannels"`
 	VideoChannels                         int     `json:"videochannels"`
 	Conferences                           int     `json:"conferences"`
+	P2PConferences                        int     `json:"p2p_conferences"`
 	Participants                          int     `json:"participants"`
 	Videostreams                          int     `json:"videostreams"`
 	TotalLossControlledParticipantSeconds int     `json:"total_loss_controlled_participant_seconds"`
@@ -84,6 +85,9 @@ jitsi_videochannels {{.VideoChannels}}
 # HELP jitsi_conferences The current number of conferences.
 # TYPE jitsi_conferences gauge
 jitsi_conferences {{.Conferences}}
+# HELP jitsi_p2p_conferences The current number of p2p conferences.
+# TYPE jitsi_p2p_conferences gauge
+jitsi_p2p_conferences {{.P2PConferences}}
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants {{.Participants}}
