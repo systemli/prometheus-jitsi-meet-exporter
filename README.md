@@ -4,7 +4,7 @@
 
 Prometheus Exporter for Jitsi Meet written in Go. Based on [Jitsi Meet Exporter](https://git.autistici.org/ai3/tools/jitsi-prometheus-exporter) from [Autistici](https://www.autistici.org/)
 
-There's multiple different statistics endpoint that can be exposed by jitsi (like /stats and /colibri/stats); you can configure the used URL with the `videobridge-url`.
+There's multiple different [statistics endpoint that can be exposed by jitsi](https://github.com/jitsi/jitsi-videobridge/blob/master/doc/statistics.md) (like /stats and /colibri/stats); you can configure the used URL with the `videobridge-url`.
 The exporter will handle both of them, but some metrics that aren't exposed may be reported as 0.
 
 ## Usage
