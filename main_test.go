@@ -22,7 +22,7 @@ func TestGetMetrics(t *testing.T) {
 		expected  string
 	}{
 		{
-			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_conferences_completed":0,"total_recording_failures":0,"conferences":2,"total_live_streaming_failures":0,"participants":4}`,
+			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_conferences_completed":0,"total_recording_failures":0,"conferences":2,"p2p_conferences":1,"total_live_streaming_failures":0,"participants":4}`,
 			expected: `# HELP jitsi_threads The number of Java threads that the video bridge is using.
 # TYPE jitsi_threads gauge
 jitsi_threads 0
@@ -62,6 +62,9 @@ jitsi_videochannels 0
 # HELP jitsi_conferences The current number of conferences.
 # TYPE jitsi_conferences gauge
 jitsi_conferences 2
+# HELP jitsi_p2p_conferences The current number of p2p conferences.
+# TYPE jitsi_p2p_conferences gauge
+jitsi_p2p_conferences 1
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants 4
@@ -194,6 +197,9 @@ jitsi_videochannels 0
 # HELP jitsi_conferences The current number of conferences.
 # TYPE jitsi_conferences gauge
 jitsi_conferences 0
+# HELP jitsi_p2p_conferences The current number of p2p conferences.
+# TYPE jitsi_p2p_conferences gauge
+jitsi_p2p_conferences 0
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants 0
