@@ -83,6 +83,9 @@ jitsi_videochannels 0
 # HELP jitsi_conferences The current number of conferences.
 # TYPE jitsi_conferences gauge
 jitsi_conferences 0
+# HELP jitsi_p2p_conferences The current number of p2p conferences.
+# TYPE jitsi_p2p_conferences gauge
+jitsi_p2p_conferences 1
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants 0
