@@ -53,7 +53,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1611864152470,
+  "iteration": 1612608944252,
   "links": [],
   "panels": [
     {
@@ -702,7 +702,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": false,
+      "stack": true,
       "steppedLine": false,
       "targets": [
         {
@@ -710,6 +710,12 @@
           "interval": "",
           "legendFormat": "conferences",
           "refId": "A"
+        },
+        {
+          "expr": "jitsi_p2p_conferences{instance=~\"$instance.*\"}",
+          "interval": "",
+          "legendFormat": "p2p conferences",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -2156,5 +2162,5 @@
   "timezone": "",
   "title": "Jitsi Meet",
   "uid": "wX13E8RGz",
-  "version": 1
+  "version": 3
 }
