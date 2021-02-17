@@ -44,6 +44,18 @@ type videoBridgeStats struct {
 	TotalColibriWebSocketMessagesReceived int     `json:"total_colibri_web_socket_messages_received"`
 	TotalColibriWebSocketMessagesSent     int     `json:"total_colibri_web_socket_messages_sent"`
 	TotalParticipants                     int     `json:"total_participants"`
+	OctoVersion                           int     `json:"octo_version"`
+	OctoConferences                       int     `json:"octo_conferences"`
+	OctoEndpoints                         int     `json:"octo_endpoints"`
+	OctoReceiveBitrate                    int     `json:"octo_receive_bitrate"`
+	OctoReceivePacketRate                 int     `json:"octo_receive_packet_rate"`
+	OctoSendBitrate                       int     `json:"octo_send_bitrate"`
+	OctoSendPacketRate                    int     `json:"octo_send_packet_rate"`
+	TotalBytesReceivedOcto                int     `json:"total_bytes_received_octo"`
+	TotalBytesSentOcto                    int     `json:"total_bytes_sent_octo"`
+	TotalPacketsDroppedOcto               int     `json:"total_packets_dropped_octo"`
+	TotalPacketsReceivedOcto              int     `json:"total_packets_received_octo"`
+	TotalPacketsSentOcto                  int     `json:"total_packets_sent_octo"`
 }
 
 var tpl = template.Must(template.New("stats").Parse(`# HELP jitsi_threads The number of Java threads that the video bridge is using.
@@ -130,6 +142,42 @@ jitsi_total_colibri_web_socket_messages_received {{.TotalColibriWebSocketMessage
 # HELP jitsi_total_colibri_web_socket_messages_sent The total number messages sent through COLIBRI web sockets.
 # TYPE jitsi_total_colibri_web_socket_messages_sent counter
 jitsi_total_colibri_web_socket_messages_sent {{.TotalColibriWebSocketMessagesSent}}
+# HELP jitsi_octo_version The current running OCTO version
+# TYPE jitsi_octo_version gauge
+jitsi_octo_version {{.OctoVersion}}
+# HELP jitsi_octo_conferences The current number of OCTO conferences.
+# TYPE jitsi_octo_conferences gauge
+jitsi_octo_conferences {{.OctoConferences}}
+# HELP jitsi_octo_endpoints The current number of OCTO endpoints.
+# TYPE jitsi_octo_endpoints gauge
+jitsi_octo_endpoints {{.OctoEndpoints}}
+# HELP jitsi_octo_receive_bitrate The total receiving bitrate for the OCTO video bridge in kilobits per second.
+# TYPE jitsi_octo_receive_bitrate gauge
+jitsi_octo_receive_bitrate {{.OctoReceiveBitrate}}
+# HELP jitsi_octo_send_bitrate The total outgoing bitrate for the OCTO video bridge in kilobits per second.
+# TYPE jitsi_octo_send_bitrate gauge
+jitsi_octo_send_bitrate {{.OctoSendBitrate}}
+# HELP jitsi_octo_receive_packet_rate The total incoming packet rate for the OCTO video bridge in packets per second.
+# TYPE jitsi_octo_receive_packet_rate gauge
+jitsi_octo_receive_packet_rate {{.OctoReceivePacketRate}}
+# HELP jitsi_octo_send_packet_rate The total outgoing packet rate for the OCTO video bridge in packets per second.
+# TYPE jitsi_octo_send_packet_rate gauge
+jitsi_octo_send_packet_rate {{.OctoSendPacketRate}}
+# HELP jitsi_total_bytes_received_octo The total incoming bit rate for the OCTO video bridge in bytes per second.
+# TYPE jitsi_total_bytes_received_octo gauge
+jitsi_total_bytes_received_octo {{.TotalBytesReceivedOcto}}
+# HELP jitsi_total_bytes_sent_octo The total outgoing bit rate for the OCTO video bridge in bytes per second.
+# TYPE jitsi_total_bytes_sent_octo gauge
+jitsi_total_bytes_sent_octo {{.TotalBytesSentOcto}}
+# HELP jitsi_total_packets_dropped_octo The total of dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_dropped_octo gauge
+jitsi_total_packets_dropped_octo {{.TotalPacketsDroppedOcto}}
+# HELP jitsi_total_packets_received_octo The total of incoming dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_received_octo gauge
+jitsi_total_packets_received_octo {{.TotalPacketsReceivedOcto}}
+# HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_sent_octo gauge
+jitsi_total_packets_sent_octo {{.TotalPacketsSentOcto}}
 `))
 
 type handler struct {
