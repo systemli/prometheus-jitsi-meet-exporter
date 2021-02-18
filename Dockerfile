@@ -1,5 +1,4 @@
-FROM golang:1.15.8-alpine
-ENV GO111MODULE=on
+FROM golang:1.16.0-alpine
 WORKDIR /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
 ADD . /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
 RUN go build -o /prometheus-jitsi-meet-exporter
