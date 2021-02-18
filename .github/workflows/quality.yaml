@@ -1,6 +1,8 @@
 name: Quality
 
-on: [push]
+on:
+  push:
+  pull_request_target:
 
 jobs:
   golangci:
