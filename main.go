@@ -31,6 +31,7 @@ type videoBridgeStats struct {
 	P2PConferences                        int     `json:"p2p_conferences"`
 	Participants                          int     `json:"participants"`
 	Videostreams                          int     `json:"videostreams"`
+	StressLevel                           float64 `json:"stress_level"`
 	TotalLossControlledParticipantSeconds int     `json:"total_loss_controlled_participant_seconds"`
 	TotalLossLimitedParticipantSeconds    int     `json:"total_loss_limited_participant_seconds"`
 	TotalLossDegradedParticipantSeconds   int     `json:"total_loss_degraded_participant_seconds"`
@@ -106,6 +107,9 @@ jitsi_participants {{.Participants}}
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams {{.Videostreams}}
+# HELP jitsi_stress_level Stress Level reported to Jicofo by the videobridge.
+# TYPE jitsi_stress_level gauge
+jitsi_stress_level {{.StressLevel}}
 # HELP jitsi_total_loss_controlled_participant_seconds The total number of participant-seconds that are loss-controlled.
 # TYPE jitsi_total_loss_controlled_participant_seconds counter
 jitsi_total_loss_controlled_participant_seconds {{.TotalLossControlledParticipantSeconds}}

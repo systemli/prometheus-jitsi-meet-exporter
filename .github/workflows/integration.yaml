@@ -1,6 +1,8 @@
 name: Integration
 
-on: [push]
+on:
+  push:
+  pull_request_target:
 
 jobs:
   test:
@@ -11,7 +13,7 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v2.1.3
         with:
-          go-version: '1.15.x'
+          go-version: '1.16.x'
       - name: Vet
         run: make vet
       - name: Test
@@ -25,7 +27,7 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v2.1.3
         with:
-          go-version: '1.15.x'
+          go-version: '1.16.x'
       - name: Build
         run: make build
 

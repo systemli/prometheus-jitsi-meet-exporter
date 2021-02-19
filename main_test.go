@@ -71,6 +71,9 @@ jitsi_participants 4
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
+# HELP jitsi_stress_level Stress Level reported to Jicofo by the videobridge.
+# TYPE jitsi_stress_level gauge
+jitsi_stress_level 0
 # HELP jitsi_total_loss_controlled_participant_seconds The total number of participant-seconds that are loss-controlled.
 # TYPE jitsi_total_loss_controlled_participant_seconds counter
 jitsi_total_loss_controlled_participant_seconds 0
@@ -129,6 +132,7 @@ jitsi_total_colibri_web_socket_messages_sent 0
   "relay_id": "10.0.0.5:4096",
   "rtp_loss": 0,
   "rtt_aggregate": 0,
+  "stress_level": 0.6,
   "threads": 59,
   "total_bytes_received": 257628359,
   "total_bytes_received_octo": 0,
@@ -206,6 +210,9 @@ jitsi_participants 0
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
+# HELP jitsi_stress_level Stress Level reported to Jicofo by the videobridge.
+# TYPE jitsi_stress_level gauge
+jitsi_stress_level 0.6
 # HELP jitsi_total_loss_controlled_participant_seconds The total number of participant-seconds that are loss-controlled.
 # TYPE jitsi_total_loss_controlled_participant_seconds counter
 jitsi_total_loss_controlled_participant_seconds 847
