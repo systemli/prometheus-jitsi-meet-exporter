@@ -125,6 +125,42 @@ jitsi_total_colibri_web_socket_messages_received 0
 # HELP jitsi_total_colibri_web_socket_messages_sent The total number messages sent through COLIBRI web sockets.
 # TYPE jitsi_total_colibri_web_socket_messages_sent counter
 jitsi_total_colibri_web_socket_messages_sent 0
+# HELP jitsi_octo_version The current running OCTO version
+# TYPE jitsi_octo_version gauge
+jitsi_octo_version 0
+# HELP jitsi_octo_conferences The current number of OCTO conferences.
+# TYPE jitsi_octo_conferences gauge
+jitsi_octo_conferences 0
+# HELP jitsi_octo_endpoints The current number of OCTO endpoints.
+# TYPE jitsi_octo_endpoints gauge
+jitsi_octo_endpoints 0
+# HELP jitsi_octo_receive_bitrate The total receiving bitrate for the OCTO video bridge in kilobits per second.
+# TYPE jitsi_octo_receive_bitrate gauge
+jitsi_octo_receive_bitrate 0
+# HELP jitsi_octo_send_bitrate The total outgoing bitrate for the OCTO video bridge in kilobits per second.
+# TYPE jitsi_octo_send_bitrate gauge
+jitsi_octo_send_bitrate 0
+# HELP jitsi_octo_receive_packet_rate The total incoming packet rate for the OCTO video bridge in packets per second.
+# TYPE jitsi_octo_receive_packet_rate gauge
+jitsi_octo_receive_packet_rate 0
+# HELP jitsi_octo_send_packet_rate The total outgoing packet rate for the OCTO video bridge in packets per second.
+# TYPE jitsi_octo_send_packet_rate gauge
+jitsi_octo_send_packet_rate 0
+# HELP jitsi_total_bytes_received_octo The total incoming bit rate for the OCTO video bridge in bytes per second.
+# TYPE jitsi_total_bytes_received_octo gauge
+jitsi_total_bytes_received_octo 0
+# HELP jitsi_total_bytes_sent_octo The total outgoing bit rate for the OCTO video bridge in bytes per second.
+# TYPE jitsi_total_bytes_sent_octo gauge
+jitsi_total_bytes_sent_octo 0
+# HELP jitsi_total_packets_dropped_octo The total of dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_dropped_octo gauge
+jitsi_total_packets_dropped_octo 0
+# HELP jitsi_total_packets_received_octo The total of incoming dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_received_octo gauge
+jitsi_total_packets_received_octo 0
+# HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
+# TYPE jitsi_total_packets_sent_octo gauge
+jitsi_total_packets_sent_octo 0
 ```
 
 ## License
