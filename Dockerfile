@@ -1,11 +1,34 @@
-FROM golang:1.16.2-alpine
-WORKDIR /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
-ADD . /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
-RUN go build -o /prometheus-jitsi-meet-exporter
+FROM golang:1.16.2-alpine as builder
 
-FROM alpine
-WORKDIR /app
-COPY --from=0 /prometheus-jitsi-meet-exporter /prometheus-jitsi-meet-exporter
+WORKDIR /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
+
+ENV USER=appuser
+ENV UID=10001
+
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    "${USER}"
+
+ADD . /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
+RUN go get -d -v && \
+    go mod download && \
+    go mod verify && \
+    CGO_ENABLED=0 go build -ldflags="-w -s" -o /prometheus-jitsi-meet-exporter
+
+
+FROM scratch
+
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /etc/group /etc/group
+COPY --from=builder /prometheus-jitsi-meet-exporter /prometheus-jitsi-meet-exporter
+
+USER appuser:appuser
 
 EXPOSE 9888
+
 ENTRYPOINT ["/prometheus-jitsi-meet-exporter"]
