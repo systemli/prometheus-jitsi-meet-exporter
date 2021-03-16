@@ -146,6 +146,30 @@ jitsi_total_packets_received_octo 0
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo 0
+# HELP jitsi_conference_sizes Conference sizes
+# TYPE jitsi_conference_sizes gauge
+jitsi_conference_sizes{conferenceSize="0"} 0
+jitsi_conference_sizes{conferenceSize="1"} 1
+jitsi_conference_sizes{conferenceSize="2"} 0
+jitsi_conference_sizes{conferenceSize="3"} 1
+jitsi_conference_sizes{conferenceSize="4"} 0
+jitsi_conference_sizes{conferenceSize="5"} 0
+jitsi_conference_sizes{conferenceSize="6"} 0
+jitsi_conference_sizes{conferenceSize="7"} 0
+jitsi_conference_sizes{conferenceSize="8"} 0
+jitsi_conference_sizes{conferenceSize="9"} 0
+jitsi_conference_sizes{conferenceSize="10"} 0
+jitsi_conference_sizes{conferenceSize="11"} 0
+jitsi_conference_sizes{conferenceSize="12"} 0
+jitsi_conference_sizes{conferenceSize="13"} 0
+jitsi_conference_sizes{conferenceSize="14"} 0
+jitsi_conference_sizes{conferenceSize="15"} 0
+jitsi_conference_sizes{conferenceSize="16"} 0
+jitsi_conference_sizes{conferenceSize="17"} 0
+jitsi_conference_sizes{conferenceSize="18"} 0
+jitsi_conference_sizes{conferenceSize="19"} 0
+jitsi_conference_sizes{conferenceSize="20"} 0
+jitsi_conference_sizes{conferenceSize="21"} 0
 `,
 		},
 		{
@@ -333,6 +357,30 @@ jitsi_total_packets_received_octo 0
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo 0
+# HELP jitsi_conference_sizes Conference sizes
+# TYPE jitsi_conference_sizes gauge
+jitsi_conference_sizes{conferenceSize="0"} 0
+jitsi_conference_sizes{conferenceSize="1"} 0
+jitsi_conference_sizes{conferenceSize="2"} 0
+jitsi_conference_sizes{conferenceSize="3"} 0
+jitsi_conference_sizes{conferenceSize="4"} 0
+jitsi_conference_sizes{conferenceSize="5"} 0
+jitsi_conference_sizes{conferenceSize="6"} 0
+jitsi_conference_sizes{conferenceSize="7"} 0
+jitsi_conference_sizes{conferenceSize="8"} 0
+jitsi_conference_sizes{conferenceSize="9"} 0
+jitsi_conference_sizes{conferenceSize="10"} 0
+jitsi_conference_sizes{conferenceSize="11"} 0
+jitsi_conference_sizes{conferenceSize="12"} 0
+jitsi_conference_sizes{conferenceSize="13"} 0
+jitsi_conference_sizes{conferenceSize="14"} 0
+jitsi_conference_sizes{conferenceSize="15"} 0
+jitsi_conference_sizes{conferenceSize="16"} 0
+jitsi_conference_sizes{conferenceSize="17"} 0
+jitsi_conference_sizes{conferenceSize="18"} 0
+jitsi_conference_sizes{conferenceSize="19"} 0
+jitsi_conference_sizes{conferenceSize="20"} 0
+jitsi_conference_sizes{conferenceSize="21"} 0
 `,
 		},
 	}

@@ -182,6 +182,12 @@ jitsi_total_packets_received_octo {{.TotalPacketsReceivedOcto}}
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo {{.TotalPacketsSentOcto}}
+# HELP jitsi_conference_sizes Conference sizes
+# TYPE jitsi_conference_sizes gauge
+{{ range $key, $value := .ConferenceSizes -}}
+jitsi_conference_sizes{conferenceSize="{{$key}}"} {{ $value }}
+{{ end -}}
+
 `))
 
 type handler struct {
