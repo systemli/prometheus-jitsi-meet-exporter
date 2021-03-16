@@ -185,7 +185,7 @@ jitsi_total_packets_sent_octo {{.TotalPacketsSentOcto}}
 # HELP jitsi_conference_sizes Conference sizes
 # TYPE jitsi_conference_sizes gauge
 {{ range $key, $value := .ConferenceSizes -}}
-jitsi_conference_sizes{conferenceSize="{{$key}}"} {{ $value }}
+jitsi_conference_sizes{conference_size="{{$key}}"} {{ $value }}
 {{ end -}}
 
 `))
