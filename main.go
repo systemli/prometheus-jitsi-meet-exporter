@@ -25,7 +25,7 @@ type videoBridgeStats struct {
 	RTTAggregate                          float64 `json:"rtt_aggregate"`
 	LargestConference                     int     `json:"largest_conference"`
 	ConferenceSizes                       []int   `json:"conference_sizes"`
-	AudioChannels                         int     `json:"audiochannels"`
+	AudioChannels                         int     `json:"endpoints_sending_audio"`
 	VideoChannels                         int     `json:"videochannels"`
 	Conferences                           int     `json:"conferences"`
 	P2PConferences                        int     `json:"p2p_conferences"`
