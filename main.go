@@ -219,6 +219,9 @@ func main() {
 	flag.Parse()
 
 	http.Handle("/metrics", handler{sourceURL: *videoBridgeURL})
+	http.HandleFunc("/health", func(w http.ResponseWriter, req *http.Request) {
+		_, _ = w.Write([]byte(`ok`))
+	})
 	if err := http.ListenAndServe(*addr, nil); err != nil {
 		log.Fatal(err)
 	}
