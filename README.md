@@ -30,7 +30,7 @@ Example Playbook:
 ### Docker
 
 ```
-docker run -p 9888:9888 systemli/prometheus-jitsi-meet-exporter:latest -videobridge-url http://jitsi:8888/stats 
+docker run -p 9888:9888 systemli/prometheus-jitsi-meet-exporter:latest -videobridge-url http://jitsi:8080/colibri/stats
 ```
 
 ## Dashboard

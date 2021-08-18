@@ -10,7 +10,7 @@ import (
 
 var (
 	addr           = flag.String("web.listen-address", ":9888", "Address on which to expose metrics and web interface.")
-	videoBridgeURL = flag.String("videobridge-url", "http://localhost:8888/stats", "Jitsi Videobridge /stats URL to scrape")
+	videoBridgeURL = flag.String("videobridge-url", "http://localhost:8080/colibri/stats", "Jitsi Videobridge /stats URL to scrape")
 )
 
 type videoBridgeStats struct {
