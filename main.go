@@ -104,6 +104,9 @@ jitsi_p2p_conferences {{.P2PConferences}}
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants {{.Participants}}
+# HELP jitsi_total_participants Total participants since running.
+# TYPE jitsi_total_participants gauge
+jitsi_total_participants {{.TotalParticipants}}
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams {{.Videostreams}}
