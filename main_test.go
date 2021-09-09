@@ -68,6 +68,9 @@ jitsi_p2p_conferences 1
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants 4
+# HELP jitsi_total_participants Total participants since running.
+# TYPE jitsi_total_participants gauge
+jitsi_total_participants 18
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
@@ -279,6 +282,9 @@ jitsi_p2p_conferences 0
 # HELP jitsi_participants The current number of participants.
 # TYPE jitsi_participants gauge
 jitsi_participants 0
+# HELP jitsi_total_participants Total participants since running.
+# TYPE jitsi_total_participants gauge
+jitsi_total_participants 2
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
