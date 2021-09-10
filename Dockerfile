@@ -1,4 +1,4 @@
-FROM golang:1.17.0-alpine as builder
+FROM golang:1.17.1-alpine as builder
 
 WORKDIR /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
 
