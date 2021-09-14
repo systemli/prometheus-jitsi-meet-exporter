@@ -1,0 +1,34 @@
+before:
+  hooks:
+    - go mod tidy
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarm:
+      - 6
+      - 7
+    ldflags:
+      - -s -w
+dockers:
+  -
+    goos: linux
+    goarch: amd64
+    image_templates:
+      - "systemli/prometheus-jitsi-meet-exporter:{{ .Tag }}"
+      - "systemli/prometheus-jitsi-meet-exporter:{{ .Major }}"
+      - "systemli/prometheus-jitsi-meet-exporter:{{ .Major }}.{{ .Minor }}"
+      - "systemli/prometheus-jitsi-meet-exporter:latest"
+checksum:
+  name_template: 'checksums.txt'
+snapshot:
+  name_template: "{{ .Tag }}-next"
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
