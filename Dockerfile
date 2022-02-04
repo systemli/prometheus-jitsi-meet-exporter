@@ -19,7 +19,7 @@ FROM scratch
 
 COPY --from=builder /etc/passwd /etc/passwd
 COPY --from=builder /etc/group /etc/group
-COPY prometheus-jitsi-meet-exporter /prometheus-jitsi-meet-exporter
+COPY . /prometheus-jitsi-meet-exporter
 
 USER appuser:appuser
 
