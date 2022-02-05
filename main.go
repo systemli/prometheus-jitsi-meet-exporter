@@ -48,7 +48,7 @@ type videoBridgeStats struct {
 	OctoVersion                           int     `json:"octo_version"`
 	OctoConferences                       int     `json:"octo_conferences"`
 	OctoEndpoints                         int     `json:"octo_endpoints"`
-	OctoReceiveBitrate                    int     `json:"octo_receive_bitrate"`
+	OctoReceiveBitrate                    float64     `json:"octo_receive_bitrate"`
 	OctoReceivePacketRate                 int     `json:"octo_receive_packet_rate"`
 	OctoSendBitrate                       float64 `json:"octo_send_bitrate"`
 	OctoSendPacketRate                    int     `json:"octo_send_packet_rate"`
