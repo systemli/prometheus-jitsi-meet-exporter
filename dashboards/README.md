@@ -8,7 +8,7 @@ We provide basic dashboards for Jitsi Meet. Feel free to use and extend them.
 
 * Contains a mix of system and jitsi metrics
 * [Available in this repo](https://github.com/de-johannes/prometheus-jitsi-meet-exporter/blob/master/dashboards/jitsi-meet-dashboard-example.json)
-* Tested with Kubernetes Rancher 2.6 on Ubuntu 20.04 LTS on Hetzner Dedicated an Cloud Servers
+* Tested with Kubernetes 1.21 and Rancher 2.6 on Ubuntu 20.04 LTS on Hetzner Dedicated an Cloud Servers
 
 ## Jitsi Meet Dashboard
 
