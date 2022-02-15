@@ -847,7 +847,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
@@ -857,6 +857,15 @@
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(jitsi_conferences)",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "Sum",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -941,7 +950,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -952,7 +961,7 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
@@ -961,6 +970,14 @@
           "interval": "",
           "legendFormat": "{{pod}}",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(jitsi_participants)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Sum",
+          "refId": "B"
         }
       ],
       "thresholds": [],
@@ -1044,7 +1061,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -2872,7 +2889,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [
@@ -2914,8 +2931,8 @@
     ]
   },
   "time": {
-    "from": "now-1h",
-    "to": "now"
+    "from": "now-1d/d",
+    "to": "now-1d/d"
   },
   "timepicker": {
     "hidden": false,
