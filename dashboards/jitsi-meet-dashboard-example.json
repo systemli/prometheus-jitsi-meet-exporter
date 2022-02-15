@@ -17,7 +17,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": 79,
-  "iteration": 1644670377854,
+  "iteration": 1644908634947,
   "links": [
     {
       "asDropdown": false,
@@ -1014,7 +1014,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "The current number of sent video channels.",
+      "description": "The current number of sent video and audio channels.",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -1055,12 +1055,12 @@
       "renderer": "flot",
       "seriesOverrides": [],
       "spaceLength": 10,
-      "stack": true,
+      "stack": false,
       "steppedLine": false,
       "targets": [
         {
           "exemplar": true,
-          "expr": "jitsi_endpoints_sending_audio{pod=~\"$pod.*\"}",
+          "expr": "sum(jitsi_endpoints_sending_audio)",
           "hide": false,
           "interval": "",
           "legendFormat": "audiochannels",
@@ -1068,7 +1068,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jitsi_endpoints_sending_video{pod=~\"$pod.*\"}",
+          "expr": "sum(jitsi_endpoints_sending_video)",
           "interval": "",
           "legendFormat": "videochannels",
           "refId": "B"
@@ -1078,7 +1078,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Videochannels",
+      "title": "Channels",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1905,10 +1905,9 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "",
       "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
+        "defaults": {},
         "overrides": []
       },
       "fill": 1,
@@ -1920,7 +1919,7 @@
         "y": 19
       },
       "hiddenSeries": false,
-      "id": 24,
+      "id": 69,
       "interval": "10s",
       "legend": {
         "avg": false,
@@ -1933,6 +1932,7 @@
       },
       "lines": true,
       "linewidth": 1,
+      "maxDataPoints": null,
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
@@ -1945,21 +1945,62 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": true,
+      "steppedLine": false,
       "targets": [
         {
           "exemplar": true,
-          "expr": "count(container_memory_usage_bytes{container='jitsi',pod=~\"$pod\"})",
+          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-0\"}[$__rate_interval]))",
+          "instant": false,
           "interval": "",
-          "legendFormat": "number of pods",
+          "legendFormat": "receive-coturn-1",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-0\"}[$__rate_interval])*(-1))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "transmit-coturn-1",
+          "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-1\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "receive-coturn-2",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-1\"}[$__rate_interval])*(-1))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "transmit-coturn-2",
+          "refId": "D"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-2\"}[$__rate_interval]))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "receive-coturn-3",
+          "refId": "E"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-2\"}[$__rate_interval])*(-1))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "transmit-coturn-3",
+          "refId": "F"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Number of Running JVB Pods",
+      "title": "Coturn-Data",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1976,17 +2017,16 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1013",
-          "decimals": 0,
-          "format": "short",
+          "$$hashKey": "object:211",
+          "format": "Bps",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": "0",
+          "min": null,
           "show": true
         },
         {
-          "$$hashKey": "object:1014",
+          "$$hashKey": "object:212",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2209,9 +2249,10 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "",
       "fieldConfig": {
-        "defaults": {},
+        "defaults": {
+          "links": []
+        },
         "overrides": []
       },
       "fill": 1,
@@ -2223,7 +2264,7 @@
         "y": 24
       },
       "hiddenSeries": false,
-      "id": 69,
+      "id": 24,
       "interval": "10s",
       "legend": {
         "avg": false,
@@ -2236,7 +2277,6 @@
       },
       "lines": true,
       "linewidth": 1,
-      "maxDataPoints": null,
       "nullPointMode": "null",
       "options": {
         "alertThreshold": true
@@ -2249,62 +2289,21 @@
       "seriesOverrides": [],
       "spaceLength": 10,
       "stack": false,
-      "steppedLine": false,
+      "steppedLine": true,
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-0\"}[$__rate_interval]))",
-          "instant": false,
+          "expr": "count(container_memory_usage_bytes{container='jitsi',pod=~\"$pod\"})",
           "interval": "",
-          "legendFormat": "receive-coturn-1",
+          "legendFormat": "number of pods",
           "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-0\"}[$__rate_interval])*(-1))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "transmit-coturn-1",
-          "refId": "B"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-1\"}[$__rate_interval]))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "receive-coturn-2",
-          "refId": "C"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-1\"}[$__rate_interval])*(-1))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "transmit-coturn-2",
-          "refId": "D"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(irate(container_network_receive_bytes_total{pod=\"coturn-2\"}[$__rate_interval]))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "receive-coturn-3",
-          "refId": "E"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(irate(container_network_transmit_bytes_total{pod=\"coturn-2\"}[$__rate_interval])*(-1))",
-          "hide": false,
-          "interval": "",
-          "legendFormat": "transmit-coturn-3",
-          "refId": "F"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Coturn-Data",
+      "title": "Number of Running JVB Pods",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2321,16 +2320,17 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:211",
-          "format": "Bps",
+          "$$hashKey": "object:1013",
+          "decimals": 0,
+          "format": "short",
           "label": null,
           "logBase": 1,
           "max": null,
-          "min": null,
+          "min": "0",
           "show": true
         },
         {
-          "$$hashKey": "object:212",
+          "$$hashKey": "object:1014",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2368,6 +2368,7 @@
       },
       "hiddenSeries": false,
       "id": 70,
+      "interval": "10s",
       "legend": {
         "alignAsTable": true,
         "avg": true,
@@ -2459,7 +2460,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "The rate of partially failed conferences on the bridge. A conference is marked as partially failed when some of its channels has failed. A channel is marked as failed if it had no payload activity.",
+      "description": "The rate of (partially) failed conferences on the bridge. A conference is marked as partially failed when some of its channels has failed. A channel is marked as failed if it had no payload activity.",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -2509,13 +2510,21 @@
           "interval": "",
           "legendFormat": "partially failed conferences",
           "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "rate(jitsi_total_failed_conferences{pod=~\"$pod.*\"}[$__rate_interval])",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "failed conferences",
+          "refId": "B"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Partially Failed Conferences",
+      "title": "(Partially) Failed Conferences",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2561,108 +2570,6 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "Prometheus",
-      "description": "The rate of failed conferences on the bridge. A conference is marked as failed when all of its channels have failed. A channel is marked as failed if it had no payload activity.",
-      "fieldConfig": {
-        "defaults": {
-          "links": []
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 5,
-        "w": 6,
-        "x": 6,
-        "y": 29
-      },
-      "hiddenSeries": false,
-      "id": 47,
-      "interval": "10s",
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": true,
-        "max": true,
-        "min": true,
-        "show": false,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "options": {
-        "alertThreshold": true
-      },
-      "percentage": false,
-      "pluginVersion": "7.5.11",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "exemplar": true,
-          "expr": "jitsi_total_failed_conferences{pod=~\"$pod.*\"}  ",
-          "interval": "",
-          "legendFormat": "failed conferences",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Failed Conferences",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:787",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:788",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "Prometheus",
       "description": "The rate of participant-seconds that are loss-controlled.",
       "fieldConfig": {
         "defaults": {
@@ -2675,7 +2582,7 @@
       "gridPos": {
         "h": 5,
         "w": 6,
-        "x": 12,
+        "x": 6,
         "y": 29
       },
       "hiddenSeries": false,
@@ -2747,6 +2654,108 @@
         },
         {
           "$$hashKey": "object:374",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The rate of loss limited seconds of participants in all conferences.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 12,
+        "y": 29
+      },
+      "hiddenSeries": false,
+      "id": 47,
+      "interval": "10s",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": false,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.11",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "rate(jitsi_total_loss_limited_participant_seconds[$__rate_interval])",
+          "interval": "",
+          "legendFormat": "failed conferences",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Loss-limited participant-seconds",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:787",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:788",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2905,7 +2914,7 @@
     ]
   },
   "time": {
-    "from": "now/d",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -2926,5 +2935,5 @@
   "timezone": "Europe/Berlin",
   "title": "Jitsi",
   "uid": "jitsi",
-  "version": 72
+  "version": 81
 }
