@@ -6,6 +6,9 @@ We provide basic dashboards for Jitsi Meet. Feel free to use and extend them.
 
 ![Jitsi Meet Dashboard](jitsi-meet-dashboard-example.png)
 
+* Contains a mix of system and jitsi metrics
+* [Available in this repo](https://github.com/de-johannes/prometheus-jitsi-meet-exporter/blob/master/dashboards/jitsi-meet-dashboard-example.json)
+
 ## Jitsi Meet Dashboard
 
 * contains all exported metrics from the jitsi-meet-exporter
