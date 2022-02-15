@@ -17,7 +17,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": 79,
-  "iteration": 1644908634947,
+  "iteration": 1644909670224,
   "links": [
     {
       "asDropdown": false,
@@ -817,7 +817,7 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 8,
+        "w": 6,
         "x": 0,
         "y": 8
       },
@@ -836,7 +836,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "alertThreshold": true
       },
@@ -852,20 +852,20 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jitsi_conferences{pod=~\"$pod.*\"}",
-          "instant": false,
-          "interval": "",
-          "legendFormat": "{{pod}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
           "expr": "sum(jitsi_conferences)",
           "hide": false,
           "instant": false,
           "interval": "",
           "legendFormat": "Sum",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "jitsi_conferences{pod=~\"$pod.*\"}",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
@@ -931,8 +931,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 8,
-        "x": 8,
+        "w": 6,
+        "x": 6,
         "y": 8
       },
       "hiddenSeries": false,
@@ -966,18 +966,18 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jitsi_participants{pod=~\"$pod.*\"}",
-          "interval": "",
-          "legendFormat": "{{pod}}",
-          "refId": "A"
-        },
-        {
-          "exemplar": true,
-          "expr": "sum(jitsi_participants)",
+          "expr": "Sum(jitsi_participants)",
           "hide": false,
           "interval": "",
           "legendFormat": "Sum",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "jitsi_participants{pod=~\"$pod.*\"}",
+          "interval": "",
+          "legendFormat": "{{pod}}",
+          "refId": "A"
         }
       ],
       "thresholds": [],
@@ -1042,8 +1042,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 5,
-        "w": 8,
-        "x": 16,
+        "w": 6,
+        "x": 12,
         "y": 8
       },
       "hiddenSeries": false,
@@ -1061,7 +1061,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null as zero",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -1096,6 +1096,118 @@
       "timeRegions": [],
       "timeShift": null,
       "title": "Channels",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "transparent": true,
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:320",
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:321",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "description": "The current number of Endpoints sending no audio or video.",
+      "fieldConfig": {
+        "defaults": {
+          "links": []
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 5,
+        "w": 6,
+        "x": 18,
+        "y": 8
+      },
+      "hiddenSeries": false,
+      "id": 72,
+      "interval": "10s",
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "show": false,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null as zero",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.5.11",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "exemplar": true,
+          "expr": "sum(jitsi_inactive_endpoints)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Inactive Endpoints",
+          "refId": "A"
+        },
+        {
+          "exemplar": true,
+          "expr": "sum(jitsi_receive_only_endpoints)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "Receive Only Endpoints",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Receive Only / Inactive",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2889,7 +3001,7 @@
       }
     }
   ],
-  "refresh": "",
+  "refresh": "10s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [
@@ -2931,8 +3043,8 @@
     ]
   },
   "time": {
-    "from": "now-1d/d",
-    "to": "now-1d/d"
+    "from": "now-1h",
+    "to": "now"
   },
   "timepicker": {
     "hidden": false,
@@ -2952,5 +3064,5 @@
   "timezone": "Europe/Berlin",
   "title": "Jitsi",
   "uid": "jitsi",
-  "version": 81
+  "version": 83
 }
