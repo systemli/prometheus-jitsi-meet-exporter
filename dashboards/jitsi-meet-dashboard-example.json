@@ -17,7 +17,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": 79,
-  "iteration": 1644909670224,
+  "iteration": 1644912838609,
   "links": [
     {
       "asDropdown": false,
@@ -836,7 +836,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null as zero",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
@@ -950,7 +950,7 @@
       },
       "lines": true,
       "linewidth": 1,
-      "nullPointMode": "null as zero",
+      "nullPointMode": "null",
       "options": {
         "alertThreshold": true
       },
