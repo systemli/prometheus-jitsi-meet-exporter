@@ -12,5 +12,3 @@ jobs:
       - uses: actions/checkout@v2.4.0
       - name: GolangCI
         uses: golangci/golangci-lint-action@v2.5.2
-        with:
-          version: v1.31
