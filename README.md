@@ -10,8 +10,7 @@ The exporter will handle both of them, but some metrics that aren't exposed may 
 ## Usage
 
 ```
-go get github.com/systemli/prometheus-jitsi-meet-exporter
-go install github.com/systemli/prometheus-jitsi-meet-exporter
+go install github.com/systemli/prometheus-jitsi-meet-exporter@latest
 $GOPATH/bin/prometheus-jitsi-meet-exporter
 ```
 
