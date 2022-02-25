@@ -9,8 +9,8 @@ builds:
       - windows
       - darwin
     goarm:
-      - 6
-      - 7
+      - "6"
+      - "7"
     ldflags:
       - -s -w
 dockers:
