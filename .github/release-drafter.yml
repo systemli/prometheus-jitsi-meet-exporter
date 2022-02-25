@@ -17,10 +17,8 @@ template: |
   
   $CHANGES
   
-  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...$RESOLVED_VERSION
 
   ## Docker
   
-  - `docker pull systemli/prometheus-jitsi-meet-exporter:$MAJOR.$MINOR.$PATCH`
-  - `docker pull systemli/prometheus-jitsi-meet-exporter:$MAJOR.$MINOR`
-  - `docker pull systemli/prometheus-jitsi-meet-exporter:$MAJOR`
+  - `docker pull systemli/prometheus-jitsi-meet-exporter:$RESOLVED_VERSION`
