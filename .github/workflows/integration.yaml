@@ -18,6 +18,16 @@ jobs:
         with:
           go-version: '1.17.x'
 
+      - name: Cache Go Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
+
       - name: Vet
         run: go vet
 
@@ -36,6 +46,16 @@ jobs:
         uses: actions/setup-go@v2.2.0
         with:
           go-version: '1.17.x'
+
+      - name: Cache Go Dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/go-build
+            ~/go/pkg/mod
+          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            ${{ runner.os }}-go-
 
       - name: Build
         run: go build ./...
