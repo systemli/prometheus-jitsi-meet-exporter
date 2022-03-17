@@ -149,6 +149,18 @@ jitsi_total_packets_received_octo 0
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo 0
+# HELP total_ice_succeeded_relayed The total number of times an ICE Agent succeeded and the selected candidate pair included a relayed candidate.
+# TYPE total_ice_succeeded_relayed gauge
+total_ice_succeeded_relayed 0
+# HELP total_ice_succeeded The total number of times an ICE Agent succeeded.
+# TYPE total_ice_succeeded gauge
+total_ice_succeeded 0
+# HELP total_ice_succeeded_tcp The total number of times an ICE Agent succeeded and the selected candidate was a TCP candidate.
+# TYPE total_ice_succeeded_tcp gauge
+total_ice_succeeded_tcp 0
+# HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
+# TYPE total_ice_failed gauge
+total_ice_failed 0
 # HELP jitsi_conference_sizes Distribution of conference sizes
 # TYPE jitsi_conference_sizes gauge
 jitsi_conference_sizes{conference_size="0"} 0
@@ -220,7 +232,7 @@ jitsi_conference_sizes{conference_size="21"} 0
   "total_failed_conferences": 0,
   "total_ice_failed": 0,
   "total_ice_succeeded": 2,
-  "total_ice_succeeded_tcp": 0,
+  "total_ice_succeeded_tcp": 1,
   "total_loss_controlled_participant_seconds": 847,
   "total_loss_degraded_participant_seconds": 1,
   "total_loss_limited_participant_seconds": 0,
@@ -234,6 +246,7 @@ jitsi_conference_sizes{conference_size="21"} 0
   "total_packets_sent_octo": 0,
   "total_partially_failed_conferences": 0,
   "total_participants": 2,
+  "total_ice_succeeded_relayed": 3,
   "videochannels": 0,
   "videostreams": 0
 }`,
@@ -363,6 +376,18 @@ jitsi_total_packets_received_octo 0
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo 0
+# HELP total_ice_succeeded_relayed The total number of times an ICE Agent succeeded and the selected candidate pair included a relayed candidate.
+# TYPE total_ice_succeeded_relayed gauge
+total_ice_succeeded_relayed 3
+# HELP total_ice_succeeded The total number of times an ICE Agent succeeded.
+# TYPE total_ice_succeeded gauge
+total_ice_succeeded 2
+# HELP total_ice_succeeded_tcp The total number of times an ICE Agent succeeded and the selected candidate was a TCP candidate.
+# TYPE total_ice_succeeded_tcp gauge
+total_ice_succeeded_tcp 1
+# HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
+# TYPE total_ice_failed gauge
+total_ice_failed 0
 # HELP jitsi_conference_sizes Distribution of conference sizes
 # TYPE jitsi_conference_sizes gauge
 jitsi_conference_sizes{conference_size="0"} 0
