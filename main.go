@@ -57,6 +57,10 @@ type videoBridgeStats struct {
 	TotalPacketsDroppedOcto               int     `json:"total_packets_dropped_octo"`
 	TotalPacketsReceivedOcto              int     `json:"total_packets_received_octo"`
 	TotalPacketsSentOcto                  int     `json:"total_packets_sent_octo"`
+	TotalICESucceededRelayed              int     `json:"total_ice_succeeded_relayed"`
+	TotalICESucceeded                     int     `json:"total_ice_succeeded"`
+	TotalICESucceededTCP                  int     `json:"total_ice_succeeded_tcp"`
+	TotalICEFailed                        int     `json:"total_ice_failed"`
 }
 
 var tpl = template.Must(template.New("stats").Parse(`# HELP jitsi_threads The number of Java threads that the video bridge is using.
@@ -185,6 +189,18 @@ jitsi_total_packets_received_octo {{.TotalPacketsReceivedOcto}}
 # HELP jitsi_total_packets_sent_octo The total of sent dropped packets handled by the OCTO video bridge.
 # TYPE jitsi_total_packets_sent_octo gauge
 jitsi_total_packets_sent_octo {{.TotalPacketsSentOcto}}
+# HELP total_ice_succeeded_relayed The total number of times an ICE Agent succeeded and the selected candidate pair included a relayed candidate.
+# TYPE total_ice_succeeded_relayed gauge
+total_ice_succeeded_relayed {{.TotalICESucceededRelayed}}
+# HELP total_ice_succeeded The total number of times an ICE Agent succeeded.
+# TYPE total_ice_succeeded gauge
+total_ice_succeeded {{.TotalICESucceeded}}
+# HELP total_ice_succeeded_tcp The total number of times an ICE Agent succeeded and the selected candidate was a TCP candidate.
+# TYPE total_ice_succeeded_tcp gauge
+total_ice_succeeded_tcp {{.TotalICESucceededTCP}}
+# HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
+# TYPE total_ice_failed gauge
+total_ice_failed {{.TotalICEFailed}}
 # HELP jitsi_conference_sizes Distribution of conference sizes
 # TYPE jitsi_conference_sizes gauge
 {{ range $key, $value := .ConferenceSizes -}}
