@@ -17,7 +17,7 @@
   "gnetId": 12098,
   "graphTooltip": 1,
   "id": 79,
-  "iteration": 1644912838609,
+  "iteration": 1653822115773,
   "links": [
     {
       "asDropdown": false,
@@ -101,6 +101,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -165,6 +166,7 @@
             "mode": "thresholds"
           },
           "mappings": [],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -235,6 +237,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -306,6 +309,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -377,6 +381,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -448,6 +453,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -519,6 +525,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -590,6 +597,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -661,6 +669,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -732,6 +741,7 @@
               "value": "null"
             }
           ],
+          "min": 0,
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -856,7 +866,7 @@
           "hide": false,
           "instant": false,
           "interval": "",
-          "legendFormat": "Sum",
+          "legendFormat": "Total",
           "refId": "B"
         },
         {
@@ -969,7 +979,7 @@
           "expr": "Sum(jitsi_participants)",
           "hide": false,
           "interval": "",
-          "legendFormat": "Sum",
+          "legendFormat": "Total",
           "refId": "B"
         },
         {
@@ -1077,18 +1087,34 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(jitsi_endpoints_sending_audio)",
+          "expr": "sum(jitsi_endpoints_sending_video)",
           "hide": false,
           "interval": "",
-          "legendFormat": "audiochannels",
-          "refId": "A"
+          "legendFormat": "Sum Video",
+          "refId": "D"
         },
         {
           "exemplar": true,
-          "expr": "sum(jitsi_endpoints_sending_video)",
+          "expr": "sum(jitsi_endpoints_sending_audio)",
+          "hide": false,
           "interval": "",
-          "legendFormat": "videochannels",
+          "legendFormat": "Sum Audio",
+          "refId": "C"
+        },
+        {
+          "exemplar": true,
+          "expr": "jitsi_endpoints_sending_video{pod=~\"$pod.*\"}",
+          "interval": "",
+          "legendFormat": "{{pod}} video",
           "refId": "B"
+        },
+        {
+          "exemplar": true,
+          "expr": "jitsi_endpoints_sending_audio{pod=~\"$pod.*\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{pod}} audio",
+          "refId": "A"
         }
       ],
       "thresholds": [],
@@ -1720,6 +1746,7 @@
       },
       "hiddenSeries": false,
       "id": 28,
+      "interval": null,
       "legend": {
         "avg": false,
         "current": false,
@@ -1747,7 +1774,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "sum(rate(container_network_transmit_bytes_total{pod=~\"$pod\"}[5m])*100) by (pod)",
+          "expr": "sum(rate(container_network_transmit_bytes_total{pod=~\"$pod\"}[$__rate_interval])*100) by (pod)",
           "instant": false,
           "interval": "",
           "legendFormat": "{{pod}}",
@@ -1758,7 +1785,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Network Transmitted Bytes Rate per JVB per 5 min",
+      "title": "Network Transmitted Bytes Rate per JVB per 1 min",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1807,7 +1834,8 @@
       "description": "The fraction of lost incoming RTP packets. This is based on RTP sequence numbers and is relatively accurate.\nThe fraction of lost outgoing RTP packets. This is based on incoming RTCP Receiver Reports, and an attempt to subtract the fraction of packets that were not sent (i.e. were lost before they reached the bridge). Further, this is averaged over all streams of all users as opposed to all packets, so it is not correctly weighted. This is not accurate, but may be a useful metric nonetheless.",
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "links": [],
+          "unit": "percentunit"
         },
         "overrides": []
       },
@@ -1855,7 +1883,7 @@
       "targets": [
         {
           "exemplar": true,
-          "expr": "jitsi_incoming_loss{pod=~\"$pod.*\"}",
+          "expr": "avg(jitsi_incoming_loss{pod=~\"$pod.*\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "download",
@@ -1863,7 +1891,7 @@
         },
         {
           "exemplar": true,
-          "expr": "jitsi_outgoing_loss{pod=~\"$pod.*\"}",
+          "expr": "avg(jitsi_outgoing_loss{pod=~\"$pod.*\"})",
           "hide": false,
           "interval": "",
           "legendFormat": "upload",
@@ -1892,7 +1920,7 @@
       "yaxes": [
         {
           "$$hashKey": "object:1145",
-          "format": "short",
+          "format": "percentunit",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2034,7 +2062,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "",
+      "description": "Datarate of the Coturn (HPA - max: 3)",
       "fieldConfig": {
         "defaults": {},
         "overrides": []
@@ -2175,7 +2203,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
-      "description": "",
+      "description": "CPU usage per JVB-Pod",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -2277,6 +2305,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "Memory consumption per JVB-Pod",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -2378,6 +2407,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": null,
+      "description": "Number of running JVB-Pods (HPA - max: 8)",
       "fieldConfig": {
         "defaults": {
           "links": []
@@ -2702,7 +2732,8 @@
       "description": "The rate of participant-seconds that are loss-controlled.",
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "links": [],
+          "unit": "s"
         },
         "overrides": []
       },
@@ -2774,7 +2805,7 @@
       "yaxes": [
         {
           "$$hashKey": "object:373",
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2805,7 +2836,8 @@
       "description": "The rate of loss limited seconds of participants in all conferences.",
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "links": [],
+          "unit": "s"
         },
         "overrides": []
       },
@@ -2876,7 +2908,7 @@
       "yaxes": [
         {
           "$$hashKey": "object:787",
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -2907,7 +2939,8 @@
       "description": "The rate of participant-seconds that are loss-degraded.",
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "links": [],
+          "unit": "s"
         },
         "overrides": []
       },
@@ -2978,7 +3011,7 @@
       "yaxes": [
         {
           "$$hashKey": "object:477",
-          "format": "short",
+          "format": "s",
           "label": null,
           "logBase": 1,
           "max": null,
@@ -3001,7 +3034,7 @@
       }
     }
   ],
-  "refresh": "10s",
+  "refresh": "30s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [
@@ -3064,5 +3097,5 @@
   "timezone": "Europe/Berlin",
   "title": "Jitsi",
   "uid": "jitsi",
-  "version": 83
+  "version": 93
 }
