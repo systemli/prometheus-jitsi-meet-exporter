@@ -4,19 +4,19 @@ on:
   push:
     branches:
       - main
-  pull_request_target:
+  pull_request:
 
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
 
       - name: Setup go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.17.x'
+          go-version: "1.17.x"
 
       - name: Cache Go Dependencies
         uses: actions/cache@v3
@@ -36,7 +36,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     needs:
       - test
     steps:
@@ -45,7 +45,7 @@ jobs:
       - name: Setup go
         uses: actions/setup-go@v3
         with:
-          go-version: '1.17.x'
+          go-version: "1.17.x"
 
       - name: Cache Go Dependencies
         uses: actions/cache@v3
@@ -62,3 +62,24 @@ jobs:
 
       - name: Docker
         run: docker build .
+
+  automerge:
+    name: Merge Automatically
+    needs: [test, build]
+    runs-on: ubuntu-20.04
+
+    permissions:
+      pull-requests: write
+      contents: write
+
+    steps:
+      - name: Obtain Access Token
+        id: acces_token
+        run: |
+          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.SYSTEMLI_APP_CREDENTIALS_TOKEN }})"
+          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Merge
+        uses: fastify/github-action-merge-dependabot@v3
+        with:
+          github-token: ${{ steps.acces_token.outputs.token }}
