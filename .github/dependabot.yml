@@ -8,6 +8,10 @@ updates:
       day: "friday"
       time: "09:00"
       timezone: "Europe/Berlin"
+    groups:
+      gomod:
+        patterns:
+          - "*"
 
   - package-ecosystem: "docker"
     directory: "/"
@@ -24,3 +28,7 @@ updates:
       day: "friday"
       time: "09:00"
       timezone: "Europe/Berlin"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
