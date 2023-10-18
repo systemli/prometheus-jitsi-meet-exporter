@@ -1,9 +1,15 @@
-# Dockerfile References: https://docs.docker.com/engine/reference/builder/
+# Build Stage
+FROM golang:alpine AS build
 
-# Start from the latest golang base image
-FROM golang:latest
+WORKDIR /app
 
-# Set the Current Working Directory inside the container
+COPY . .
+RUN go mod download
+RUN CGO_ENABLED=0 GOOS=linux go build -o prometheus-jitsi-meet-exporter .
+
+# Final Stage
+FROM alpine
+
 WORKDIR /app
 
 ENV USER=appuser
@@ -17,18 +23,11 @@ RUN adduser \
     --no-create-home \
     --uid "${UID}" \
     "${USER}"
-    
-# Copy go mod and sum files
-COPY . .
-# Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
-RUN go mod download
-# Build the Go app
-RUN go build -o prometheus-jitsi-meet-exporter .
+
+COPY --from=build /app/prometheus-jitsi-meet-exporter .
 
 USER appuser:appuser
 
-# Expose port 8080 to the outside world
 EXPOSE 9888
 
-# Command to run the executable
 ENTRYPOINT ["./prometheus-jitsi-meet-exporter"]
