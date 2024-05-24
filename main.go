@@ -31,6 +31,7 @@ type videoBridgeStats struct {
 	P2PConferences                        int     `json:"p2p_conferences"`
 	Participants                          int     `json:"participants"`
 	Videostreams                          int     `json:"videostreams"`
+	EndpointsSendingVideo                 int     `json:"endpoints_sending_video"`
 	StressLevel                           float64 `json:"stress_level"`
 	TotalLossControlledParticipantSeconds int     `json:"total_loss_controlled_participant_seconds"`
 	TotalLossLimitedParticipantSeconds    int     `json:"total_loss_limited_participant_seconds"`
@@ -111,6 +112,9 @@ jitsi_participants {{.Participants}}
 # HELP jitsi_total_participants Total participants since running.
 # TYPE jitsi_total_participants gauge
 jitsi_total_participants {{.TotalParticipants}}
+# HELP jitsi_endpoint_sending_video An estimation of the number of current endpoints sending a video stream.
+# TYPE jitsi_endpoint_sending_video gauge
+jitsi_endpoints_sending_video {{.EndpointsSendingVideo}}
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams {{.Videostreams}}
