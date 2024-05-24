@@ -18,10 +18,10 @@ dockers:
     goos: linux
     goarch: amd64
     image_templates:
-      - "Movion/prometheus-jitsi-meet-exporter:{{ .Tag }}"
-      - "Movion/prometheus-jitsi-meet-exporter:{{ .Major }}"
-      - "Movion/prometheus-jitsi-meet-exporter:{{ .Major }}.{{ .Minor }}"
-      - "Movion/prometheus-jitsi-meet-exporter:latest"
+      - "movion/prometheus-jitsi-meet-exporter:{{ .Tag }}"
+      - "movion/prometheus-jitsi-meet-exporter:{{ .Major }}"
+      - "movion/prometheus-jitsi-meet-exporter:{{ .Major }}.{{ .Minor }}"
+      - "movion/prometheus-jitsi-meet-exporter:latest"
 checksum:
   name_template: 'checksums.txt'
 snapshot:
