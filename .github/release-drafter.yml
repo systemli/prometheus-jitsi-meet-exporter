@@ -38,4 +38,4 @@ template: |
 
   ## Docker
   
-  - `docker pull systemli/prometheus-jitsi-meet-exporter:$RESOLVED_VERSION`
+  - `docker pull themovion/prometheus-jitsi-meet-exporter:$RESOLVED_VERSION`
