@@ -22,7 +22,7 @@ func TestGetMetrics(t *testing.T) {
 		expected  string
 	}{
 		{
-			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_conferences_completed":0,"total_recording_failures":0,"conferences":2,"p2p_conferences":1,"total_live_streaming_failures":0,"participants":4}`,
+			statsJson: `{"largest_conference":3,"total_sip_call_failures":0,"total_participants":18,"conference_sizes":[0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"bridge_selector":{"total_least_loaded_in_region":0,"total_split_due_to_load":0,"total_not_loaded_in_region_in_conference":0,"total_least_loaded_in_region_in_conference":0,"total_not_loaded_in_region":0,"total_split_due_to_region":0,"bridge_count":1,"operational_bridge_count":1,"total_least_loaded_in_conference":0,"total_least_loaded":3},"total_conferences_created":14,"total_conferences_completed":0,"total_recording_failures":0,"conferences":2,"p2p_conferences":1,"total_live_streaming_failures":0,"endpoints_sending_video":10,"participants":4}`,
 			expected: `# HELP jitsi_threads The number of Java threads that the video bridge is using.
 # TYPE jitsi_threads gauge
 jitsi_threads 0
@@ -71,6 +71,9 @@ jitsi_participants 4
 # HELP jitsi_total_participants Total participants since running.
 # TYPE jitsi_total_participants gauge
 jitsi_total_participants 18
+# HELP jitsi_endpoint_sending_video An estimation of the number of current endpoints sending a video stream.
+# TYPE jitsi_endpoint_sending_video gauge
+jitsi_endpoints_sending_video 10
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
@@ -248,7 +251,8 @@ jitsi_conference_sizes{conference_size="21"} 0
   "total_participants": 2,
   "total_ice_succeeded_relayed": 3,
   "videochannels": 0,
-  "videostreams": 0
+  "videostreams": 0,
+  "endpoints_sending_video": 10
 }`,
 			expected: `# HELP jitsi_threads The number of Java threads that the video bridge is using.
 # TYPE jitsi_threads gauge
@@ -298,6 +302,9 @@ jitsi_participants 0
 # HELP jitsi_total_participants Total participants since running.
 # TYPE jitsi_total_participants gauge
 jitsi_total_participants 2
+# HELP jitsi_endpoint_sending_video An estimation of the number of current endpoints sending a video stream.
+# TYPE jitsi_endpoint_sending_video gauge
+jitsi_endpoints_sending_video 10
 # HELP jitsi_videostreams An estimation of the number of current video streams forwarded by the bridge.
 # TYPE jitsi_videostreams gauge
 jitsi_videostreams 0
