@@ -53,13 +53,5 @@ jobs:
       contents: write
 
     steps:
-      - name: Obtain Access Token
-        id: acces_token
-        run: |
-          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.SYSTEMLI_APP_CREDENTIALS_TOKEN }})"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
-
       - name: Merge
         uses: fastify/github-action-merge-dependabot@v3
-        with:
-          github-token: ${{ steps.acces_token.outputs.token }}

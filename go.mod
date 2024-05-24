@@ -1,4 +1,4 @@
-module github.com/systemli/prometheus-jitsi-meet-exporter
+module github.com/movion/prometheus-jitsi-meet-exporter
 
 go 1.21
 

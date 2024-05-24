@@ -1,8 +1,9 @@
 # Jitsi Meet Metrics Exporter
 
-[![Integration](https://github.com/systemli/prometheus-jitsi-meet-exporter/workflows/Integration/badge.svg?branch=main)](https://github.com/systemli/prometheus-jitsi-meet-exporter/workflows/Integration/badge.svg?branch=main) [![Quality](https://github.com/systemli/prometheus-jitsi-meet-exporter/workflows/Quality/badge.svg?branch=main)](https://github.com/systemli/prometheus-jitsi-meet-exporter/workflows/Quality/badge.svg?branch=main) [![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/systemli/prometheus-jitsi-meet-exporter)](https://hub.docker.com/r/systemli/prometheus-jitsi-meet-exporter) [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/systemli/prometheus-jitsi-meet-exporter)](https://hub.docker.com/r/systemli/prometheus-jitsi-meet-exporter)
+[![Integration](https://github.com/Movion/prometheus-jitsi-meet-exporter/actions/workflows/integration.yaml/badge.svg)](https://github.com/Movion/prometheus-jitsi-meet-exporter/actions/workflows/integration.yaml) [![Quality](https://github.com/Movion/prometheus-jitsi-meet-exporter/actions/workflows/quality.yaml/badge.svg)](https://github.com/Movion/prometheus-jitsi-meet-exporter/actions/workflows/quality.yaml) [![Docker Image Size (latest semver)](https://img.shields.io/docker/image-size/themovion/prometheus-jitsi-meet-exporter)](https://hub.docker.com/r/themovion/prometheus-jitsi-meet-exporter)
 
 Prometheus Exporter for Jitsi Meet written in Go. Based on [Jitsi Meet Exporter](https://git.autistici.org/ai3/tools/jitsi-prometheus-exporter) from [Autistici](https://www.autistici.org/)
+Fork of [Prometheus Jitsi Meet Exporter](https://github.com/Movion/prometheus-jitsi-meet-exporter/) from [systemly](https://https://github.com/systemli)
 
 There's multiple different [statistics endpoint that can be exposed by jitsi](https://github.com/jitsi/jitsi-videobridge/blob/master/doc/statistics.md) (like /stats and /colibri/stats); you can configure the used URL with the `videobridge-url`.
 The exporter will handle both of them, but some metrics that aren't exposed may be reported as 0.
