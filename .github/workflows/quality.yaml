@@ -13,4 +13,4 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: GolangCI
-        uses: golangci/golangci-lint-action@v6
+        uses: golangci/golangci-lint-action@v7
