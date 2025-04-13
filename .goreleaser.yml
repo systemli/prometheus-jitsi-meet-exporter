@@ -1,3 +1,5 @@
+version: 2
+
 before:
   hooks:
     - go mod tidy
@@ -14,8 +16,7 @@ builds:
     ldflags:
       - -s -w
 dockers:
-  -
-    goos: linux
+  - goos: linux
     goarch: amd64
     image_templates:
       - "systemli/prometheus-jitsi-meet-exporter:{{ .Tag }}"
@@ -23,8 +24,8 @@ dockers:
       - "systemli/prometheus-jitsi-meet-exporter:{{ .Major }}.{{ .Minor }}"
       - "systemli/prometheus-jitsi-meet-exporter:latest"
 checksum:
-  name_template: 'checksums.txt'
+  name_template: "checksums.txt"
 snapshot:
   name_template: "{{ .Tag }}-next"
 changelog:
-  skip: true
+  disable: true
