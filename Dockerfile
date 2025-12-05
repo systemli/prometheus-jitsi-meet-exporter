@@ -1,4 +1,4 @@
-FROM alpine:3.22.2 as builder
+FROM alpine:3.23.0 as builder
 
 WORKDIR /go/src/github.com/systemli/prometheus-jitsi-meet-exporter
 
