@@ -164,16 +164,16 @@ total_ice_succeeded_tcp 0
 # HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
 # TYPE total_ice_failed gauge
 total_ice_failed 0
-# HELP jitsi_endpoints_with_suspended_sources The current number of endpoints with suspended sources.
+# HELP jitsi_endpoints_with_suspended_sources Number of endpoints that we have suspended sending some video streams to because of bwe.
 # TYPE jitsi_endpoints_with_suspended_sources gauge
 jitsi_endpoints_with_suspended_sources 0
-# HELP jitsi_inactive_endpoints The current number of endpoints in inactive conferences.
+# HELP jitsi_inactive_endpoints Number of endpoints in inactive conferences (where no endpoint sends audio or video).
 # TYPE jitsi_inactive_endpoints gauge
 jitsi_inactive_endpoints 0
-# HELP jitsi_inactive_conferences The current number of inactive conferences.
+# HELP jitsi_inactive_conferences Number of inactive conferences (no endpoint is sending audio or video).
 # TYPE jitsi_inactive_conferences gauge
 jitsi_inactive_conferences 0
-# HELP jitsi_local_active_endpoints The current number of local endpoints in active conferences.
+# HELP jitsi_local_active_endpoints The number of active local endpoints (in a conference where at least one endpoint sends audio or video).
 # TYPE jitsi_local_active_endpoints gauge
 jitsi_local_active_endpoints 0
 # HELP jitsi_muc_clients_connected The current number of connected XMPP MUC clients.
@@ -197,10 +197,10 @@ jitsi_total_keyframes_received 0
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
 # TYPE jitsi_total_dominant_speaker_changes gauge
 jitsi_total_dominant_speaker_changes 0
-# HELP jitsi_endpoints_with_spurious_remb The total number of endpoints which sent RTCP REMB when REMB was not signaled.
+# HELP jitsi_endpoints_with_spurious_remb Number of endpoints that have sent a REMB packet even though REMB was not configured.
 # TYPE jitsi_endpoints_with_spurious_remb gauge
 jitsi_endpoints_with_spurious_remb 0
-# HELP jitsi_receive_only_endpoints The current number of receive-only endpoints.
+# HELP jitsi_receive_only_endpoints Number of endpoints that are not sending audio or video (but are receiving).
 # TYPE jitsi_receive_only_endpoints gauge
 jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
@@ -209,7 +209,7 @@ jitsi_total_visitors 0
 # HELP jitsi_visitors The current number of visitors.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
-# HELP jitsi_num_eps_oversending The current number of endpoints to which the bridge is oversending.
+# HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
 # HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
@@ -218,10 +218,10 @@ jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
 # TYPE jitsi_muc_clients_configured gauge
 jitsi_muc_clients_configured 0
-# HELP jitsi_outgoing_loss The outgoing RTP packet loss fraction.
+# HELP jitsi_outgoing_loss Fraction of outgoing RTP packets that are lost.
 # TYPE jitsi_outgoing_loss gauge
 jitsi_outgoing_loss 0
-# HELP jitsi_overall_loss The overall RTP packet loss fraction.
+# HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
 # HELP jitsi_total_layering_changes_received The total number of layering changes received.
@@ -230,7 +230,7 @@ jitsi_total_layering_changes_received 0
 # HELP jitsi_total_relays The total number of relays connected by this bridge.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 0
-# HELP jitsi_endpoints_with_high_outgoing_loss The current number of endpoints with high outgoing loss.
+# HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
 # TYPE jitsi_endpoints_with_high_outgoing_loss gauge
 jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
@@ -251,10 +251,10 @@ jitsi_average_participant_stress 0
 # HELP jitsi_total_packets_sent The total number of RTP packets sent.
 # TYPE jitsi_total_packets_sent gauge
 jitsi_total_packets_sent 0
-# HELP jitsi_endpoints The current number of endpoints, including OCTO endpoints.
+# HELP jitsi_endpoints Number of current endpoints (local and relayed).
 # TYPE jitsi_endpoints gauge
 jitsi_endpoints 0
-# HELP jitsi_incoming_loss The incoming RTP packet loss fraction.
+# HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
 # HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
@@ -269,7 +269,7 @@ jitsi_total_bytes_received 0
 # HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 0
-# HELP jitsi_endpoints_sending_audio The current number of endpoints sending non-silence audio.
+# HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
 # TYPE jitsi_endpoints_sending_audio gauge
 jitsi_endpoints_sending_audio 0
 # HELP jitsi_dtls_failed_endpoints The total number of endpoints that failed to establish DTLS.
@@ -527,16 +527,16 @@ total_ice_succeeded_tcp 1
 # HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
 # TYPE total_ice_failed gauge
 total_ice_failed 0
-# HELP jitsi_endpoints_with_suspended_sources The current number of endpoints with suspended sources.
+# HELP jitsi_endpoints_with_suspended_sources Number of endpoints that we have suspended sending some video streams to because of bwe.
 # TYPE jitsi_endpoints_with_suspended_sources gauge
 jitsi_endpoints_with_suspended_sources 0
-# HELP jitsi_inactive_endpoints The current number of endpoints in inactive conferences.
+# HELP jitsi_inactive_endpoints Number of endpoints in inactive conferences (where no endpoint sends audio or video).
 # TYPE jitsi_inactive_endpoints gauge
 jitsi_inactive_endpoints 0
-# HELP jitsi_inactive_conferences The current number of inactive conferences.
+# HELP jitsi_inactive_conferences Number of inactive conferences (no endpoint is sending audio or video).
 # TYPE jitsi_inactive_conferences gauge
 jitsi_inactive_conferences 0
-# HELP jitsi_local_active_endpoints The current number of local endpoints in active conferences.
+# HELP jitsi_local_active_endpoints The number of active local endpoints (in a conference where at least one endpoint sends audio or video).
 # TYPE jitsi_local_active_endpoints gauge
 jitsi_local_active_endpoints 0
 # HELP jitsi_muc_clients_connected The current number of connected XMPP MUC clients.
@@ -560,10 +560,10 @@ jitsi_total_keyframes_received 0
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
 # TYPE jitsi_total_dominant_speaker_changes gauge
 jitsi_total_dominant_speaker_changes 0
-# HELP jitsi_endpoints_with_spurious_remb The total number of endpoints which sent RTCP REMB when REMB was not signaled.
+# HELP jitsi_endpoints_with_spurious_remb Number of endpoints that have sent a REMB packet even though REMB was not configured.
 # TYPE jitsi_endpoints_with_spurious_remb gauge
 jitsi_endpoints_with_spurious_remb 0
-# HELP jitsi_receive_only_endpoints The current number of receive-only endpoints.
+# HELP jitsi_receive_only_endpoints Number of endpoints that are not sending audio or video (but are receiving).
 # TYPE jitsi_receive_only_endpoints gauge
 jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
@@ -572,7 +572,7 @@ jitsi_total_visitors 0
 # HELP jitsi_visitors The current number of visitors.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
-# HELP jitsi_num_eps_oversending The current number of endpoints to which the bridge is oversending.
+# HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
 # HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
@@ -581,10 +581,10 @@ jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
 # TYPE jitsi_muc_clients_configured gauge
 jitsi_muc_clients_configured 0
-# HELP jitsi_outgoing_loss The outgoing RTP packet loss fraction.
+# HELP jitsi_outgoing_loss Fraction of outgoing RTP packets that are lost.
 # TYPE jitsi_outgoing_loss gauge
 jitsi_outgoing_loss 0
-# HELP jitsi_overall_loss The overall RTP packet loss fraction.
+# HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
 # HELP jitsi_total_layering_changes_received The total number of layering changes received.
@@ -593,7 +593,7 @@ jitsi_total_layering_changes_received 0
 # HELP jitsi_total_relays The total number of relays connected by this bridge.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 0
-# HELP jitsi_endpoints_with_high_outgoing_loss The current number of endpoints with high outgoing loss.
+# HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
 # TYPE jitsi_endpoints_with_high_outgoing_loss gauge
 jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
@@ -614,10 +614,10 @@ jitsi_average_participant_stress 0
 # HELP jitsi_total_packets_sent The total number of RTP packets sent.
 # TYPE jitsi_total_packets_sent gauge
 jitsi_total_packets_sent 266556
-# HELP jitsi_endpoints The current number of endpoints, including OCTO endpoints.
+# HELP jitsi_endpoints Number of current endpoints (local and relayed).
 # TYPE jitsi_endpoints gauge
 jitsi_endpoints 0
-# HELP jitsi_incoming_loss The incoming RTP packet loss fraction.
+# HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
 # HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
@@ -632,7 +632,7 @@ jitsi_total_bytes_received 257628359
 # HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 0
-# HELP jitsi_endpoints_sending_audio The current number of endpoints sending non-silence audio.
+# HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
 # TYPE jitsi_endpoints_sending_audio gauge
 jitsi_endpoints_sending_audio 0
 # HELP jitsi_dtls_failed_endpoints The total number of endpoints that failed to establish DTLS.
@@ -907,16 +907,16 @@ total_ice_succeeded_tcp 0
 # HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
 # TYPE total_ice_failed gauge
 total_ice_failed 0
-# HELP jitsi_endpoints_with_suspended_sources The current number of endpoints with suspended sources.
+# HELP jitsi_endpoints_with_suspended_sources Number of endpoints that we have suspended sending some video streams to because of bwe.
 # TYPE jitsi_endpoints_with_suspended_sources gauge
 jitsi_endpoints_with_suspended_sources 0
-# HELP jitsi_inactive_endpoints The current number of endpoints in inactive conferences.
+# HELP jitsi_inactive_endpoints Number of endpoints in inactive conferences (where no endpoint sends audio or video).
 # TYPE jitsi_inactive_endpoints gauge
 jitsi_inactive_endpoints 0
-# HELP jitsi_inactive_conferences The current number of inactive conferences.
+# HELP jitsi_inactive_conferences Number of inactive conferences (no endpoint is sending audio or video).
 # TYPE jitsi_inactive_conferences gauge
 jitsi_inactive_conferences 0
-# HELP jitsi_local_active_endpoints The current number of local endpoints in active conferences.
+# HELP jitsi_local_active_endpoints The number of active local endpoints (in a conference where at least one endpoint sends audio or video).
 # TYPE jitsi_local_active_endpoints gauge
 jitsi_local_active_endpoints 0
 # HELP jitsi_muc_clients_connected The current number of connected XMPP MUC clients.
@@ -940,10 +940,10 @@ jitsi_total_keyframes_received 485
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
 # TYPE jitsi_total_dominant_speaker_changes gauge
 jitsi_total_dominant_speaker_changes 117
-# HELP jitsi_endpoints_with_spurious_remb The total number of endpoints which sent RTCP REMB when REMB was not signaled.
+# HELP jitsi_endpoints_with_spurious_remb Number of endpoints that have sent a REMB packet even though REMB was not configured.
 # TYPE jitsi_endpoints_with_spurious_remb gauge
 jitsi_endpoints_with_spurious_remb 1
-# HELP jitsi_receive_only_endpoints The current number of receive-only endpoints.
+# HELP jitsi_receive_only_endpoints Number of endpoints that are not sending audio or video (but are receiving).
 # TYPE jitsi_receive_only_endpoints gauge
 jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
@@ -952,7 +952,7 @@ jitsi_total_visitors 0
 # HELP jitsi_visitors The current number of visitors.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
-# HELP jitsi_num_eps_oversending The current number of endpoints to which the bridge is oversending.
+# HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
 # HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
@@ -961,10 +961,10 @@ jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
 # TYPE jitsi_muc_clients_configured gauge
 jitsi_muc_clients_configured 1
-# HELP jitsi_outgoing_loss The outgoing RTP packet loss fraction.
+# HELP jitsi_outgoing_loss Fraction of outgoing RTP packets that are lost.
 # TYPE jitsi_outgoing_loss gauge
 jitsi_outgoing_loss 0
-# HELP jitsi_overall_loss The overall RTP packet loss fraction.
+# HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
 # HELP jitsi_total_layering_changes_received The total number of layering changes received.
@@ -973,7 +973,7 @@ jitsi_total_layering_changes_received 29
 # HELP jitsi_total_relays The total number of relays connected by this bridge.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 13
-# HELP jitsi_endpoints_with_high_outgoing_loss The current number of endpoints with high outgoing loss.
+# HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
 # TYPE jitsi_endpoints_with_high_outgoing_loss gauge
 jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
@@ -994,10 +994,10 @@ jitsi_average_participant_stress 0.01
 # HELP jitsi_total_packets_sent The total number of RTP packets sent.
 # TYPE jitsi_total_packets_sent gauge
 jitsi_total_packets_sent 1560207
-# HELP jitsi_endpoints The current number of endpoints, including OCTO endpoints.
+# HELP jitsi_endpoints Number of current endpoints (local and relayed).
 # TYPE jitsi_endpoints gauge
 jitsi_endpoints 0
-# HELP jitsi_incoming_loss The incoming RTP packet loss fraction.
+# HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
 # HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
@@ -1012,7 +1012,7 @@ jitsi_total_bytes_received 759150207
 # HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 2
-# HELP jitsi_endpoints_sending_audio The current number of endpoints sending non-silence audio.
+# HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
 # TYPE jitsi_endpoints_sending_audio gauge
 jitsi_endpoints_sending_audio 0
 # HELP jitsi_dtls_failed_endpoints The total number of endpoints that failed to establish DTLS.
@@ -1040,7 +1040,8 @@ jitsi_region_info{region="all"} 1
 # TYPE jitsi_relay_id_info gauge
 jitsi_relay_id_info{relay_id="jitsi-jvb-0"} 1
 # HELP jitsi_conference_sizes Distribution of conference sizes
-# TYPE jitsi_conference_sizes gauge`,
+# TYPE jitsi_conference_sizes gauge
+`,
 		},
 	}
 
