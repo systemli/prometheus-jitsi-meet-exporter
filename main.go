@@ -62,6 +62,51 @@ type videoBridgeStats struct {
 	TotalICESucceeded                     int     `json:"total_ice_succeeded"`
 	TotalICESucceededTCP                  int     `json:"total_ice_succeeded_tcp"`
 	TotalICEFailed                        int     `json:"total_ice_failed"`
+	EndpointsWithSuspendedSources         int     `json:"endpoints_with_suspended_sources"`
+	InactiveEndpoints                     int     `json:"inactive_endpoints"`
+	InactiveConferences                   int     `json:"inactive_conferences"`
+	LocalActiveEndpoints                  int     `json:"local_active_endpoints"`
+	MucClientsConnected                   int     `json:"muc_clients_connected"`
+	LocalEndpoints                        int     `json:"local_endpoints"`
+	TotalPacketsReceived                  int     `json:"total_packets_received"`
+	PreemptiveKfrSuppressed               int     `json:"preemptive_kfr_suppressed"`
+	PreemptiveKfrSent                     int     `json:"preemptive_kfr_sent"`
+	TotalKeyframesReceived                int     `json:"total_keyframes_received"`
+	TotalDominantSpeakerChanges           int     `json:"total_dominant_speaker_changes"`
+	EndpointsWithSpuriousRemb             int     `json:"endpoints_with_spurious_remb"`
+	ReceiveOnlyEndpoints                  int     `json:"receive_only_endpoints"`
+	TotalVisitors                         int     `json:"total_visitors"`
+	Version                               string  `json:"version"`
+	Visitors                              int     `json:"visitors"`
+	NumEpsOversending                     int     `json:"num_eps_oversending"`
+	NumEpsNoMsgTransportAfterDelay        int     `json:"num_eps_no_msg_transport_after_delay"`
+	Region                                string  `json:"region"`
+	MucClientsConfigured                  int     `json:"muc_clients_configured"`
+	OutgoingLoss                          float64 `json:"outgoing_loss"`
+	OverallLoss                           float64 `json:"overall_loss"`
+	TotalLayeringChangesReceived          int     `json:"total_layering_changes_received"`
+	TotalRelays                           int     `json:"total_relays"`
+	EndpointsWithHighOutgoingLoss         int     `json:"endpoints_with_high_outgoing_loss"`
+	Drain                                 bool    `json:"drain"`
+	TotalVideoStreamMillisecondsReceived  int     `json:"total_video_stream_milliseconds_received"`
+	ShuttingDown                          bool    `json:"shutting_down"`
+	CurrentTimestamp                      string  `json:"current_timestamp"`
+	NumRelaysNoMsgTransportAfterDelay     int     `json:"num_relays_no_msg_transport_after_delay"`
+	AverageParticipantStress              float64 `json:"average_participant_stress"`
+	TotalPacketsSent                      int     `json:"total_packets_sent"`
+	Endpoints                             int     `json:"endpoints"`
+	IncomingLoss                          float64 `json:"incoming_loss"`
+	EndpointsReconnected                  int     `json:"endpoints_reconnected"`
+	GracefulShutdown                      bool    `json:"graceful_shutdown"`
+	TotalBytesReceived                    int     `json:"total_bytes_received"`
+	EndpointsDisconnected                 int     `json:"endpoints_disconnected"`
+	EndpointsSendingAudio                 int     `json:"endpoints_sending_audio"`
+	DTLSFailedEndpoints                   int     `json:"dtls_failed_endpoints"`
+	TotalBytesSent                        int     `json:"total_bytes_sent"`
+	Healthy                               bool    `json:"healthy"`
+	MucsConfigured                        int     `json:"mucs_configured"`
+	MucsJoined                            int     `json:"mucs_joined"`
+	RelayID                               string  `json:"relay_id"`
 }
 
 var tpl = template.Must(template.New("stats").Parse(`# HELP jitsi_threads The number of Java threads that the video bridge is using.
@@ -205,6 +250,138 @@ total_ice_succeeded_tcp {{.TotalICESucceededTCP}}
 # HELP total_ice_failed The total number of times an ICE Agent failed to establish connectivity.
 # TYPE total_ice_failed gauge
 total_ice_failed {{.TotalICEFailed}}
+# HELP jitsi_endpoints_with_suspended_sources Number of endpoints that we have suspended sending some video streams to because of bwe.
+# TYPE jitsi_endpoints_with_suspended_sources gauge
+jitsi_endpoints_with_suspended_sources {{.EndpointsWithSuspendedSources}}
+# HELP jitsi_inactive_endpoints Number of endpoints in inactive conferences (where no endpoint sends audio or video).
+# TYPE jitsi_inactive_endpoints gauge
+jitsi_inactive_endpoints {{.InactiveEndpoints}}
+# HELP jitsi_inactive_conferences Number of inactive conferences (no endpoint is sending audio or video).
+# TYPE jitsi_inactive_conferences gauge
+jitsi_inactive_conferences {{.InactiveConferences}}
+# HELP jitsi_local_active_endpoints The number of active local endpoints (in a conference where at least one endpoint sends audio or video).
+# TYPE jitsi_local_active_endpoints gauge
+jitsi_local_active_endpoints {{.LocalActiveEndpoints}}
+# HELP jitsi_muc_clients_connected The current number of connected XMPP MUC clients.
+# TYPE jitsi_muc_clients_connected gauge
+jitsi_muc_clients_connected {{.MucClientsConnected}}
+# HELP jitsi_local_endpoints The current number of local non-OCTO endpoints.
+# TYPE jitsi_local_endpoints gauge
+jitsi_local_endpoints {{.LocalEndpoints}}
+# HELP jitsi_total_packets_received The total number of RTP packets received.
+# TYPE jitsi_total_packets_received gauge
+jitsi_total_packets_received {{.TotalPacketsReceived}}
+# HELP jitsi_preemptive_kfr_suppressed The total number of preemptive keyframe requests suppressed.
+# TYPE jitsi_preemptive_kfr_suppressed gauge
+jitsi_preemptive_kfr_suppressed {{.PreemptiveKfrSuppressed}}
+# HELP jitsi_preemptive_kfr_sent The total number of preemptive keyframe requests sent.
+# TYPE jitsi_preemptive_kfr_sent gauge
+jitsi_preemptive_kfr_sent {{.PreemptiveKfrSent}}
+# HELP jitsi_total_keyframes_received The total number of keyframes received.
+# TYPE jitsi_total_keyframes_received gauge
+jitsi_total_keyframes_received {{.TotalKeyframesReceived}}
+# HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
+# TYPE jitsi_total_dominant_speaker_changes gauge
+jitsi_total_dominant_speaker_changes {{.TotalDominantSpeakerChanges}}
+# HELP jitsi_endpoints_with_spurious_remb Number of endpoints that have sent a REMB packet even though REMB was not configured.
+# TYPE jitsi_endpoints_with_spurious_remb gauge
+jitsi_endpoints_with_spurious_remb {{.EndpointsWithSpuriousRemb}}
+# HELP jitsi_receive_only_endpoints Number of endpoints that are not sending audio or video (but are receiving).
+# TYPE jitsi_receive_only_endpoints gauge
+jitsi_receive_only_endpoints {{.ReceiveOnlyEndpoints}}
+# HELP jitsi_total_visitors The total number of visitors since startup.
+# TYPE jitsi_total_visitors gauge
+jitsi_total_visitors {{.TotalVisitors}}
+# HELP jitsi_visitors The current number of visitors.
+# TYPE jitsi_visitors gauge
+jitsi_visitors {{.Visitors}}
+# HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
+# TYPE jitsi_num_eps_oversending gauge
+jitsi_num_eps_oversending {{.NumEpsOversending}}
+# HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
+# TYPE jitsi_num_eps_no_msg_transport_after_delay gauge
+jitsi_num_eps_no_msg_transport_after_delay {{.NumEpsNoMsgTransportAfterDelay}}
+# HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
+# TYPE jitsi_muc_clients_configured gauge
+jitsi_muc_clients_configured {{.MucClientsConfigured}}
+# HELP jitsi_outgoing_loss Fraction of outgoing RTP packets that are lost.
+# TYPE jitsi_outgoing_loss gauge
+jitsi_outgoing_loss {{.OutgoingLoss}}
+# HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
+# TYPE jitsi_overall_loss gauge
+jitsi_overall_loss {{.OverallLoss}}
+# HELP jitsi_total_layering_changes_received The total number of layering changes received.
+# TYPE jitsi_total_layering_changes_received gauge
+jitsi_total_layering_changes_received {{.TotalLayeringChangesReceived}}
+# HELP jitsi_total_relays The total number of relays connected by this bridge.
+# TYPE jitsi_total_relays gauge
+jitsi_total_relays {{.TotalRelays}}
+# HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
+# TYPE jitsi_endpoints_with_high_outgoing_loss gauge
+jitsi_endpoints_with_high_outgoing_loss {{.EndpointsWithHighOutgoingLoss}}
+# HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
+# TYPE jitsi_drain gauge
+jitsi_drain {{if .Drain}}1{{else}}0{{end}}
+# HELP jitsi_total_video_stream_milliseconds_received The total video stream milliseconds received.
+# TYPE jitsi_total_video_stream_milliseconds_received gauge
+jitsi_total_video_stream_milliseconds_received {{.TotalVideoStreamMillisecondsReceived}}
+# HELP jitsi_shutting_down Whether jitsi-videobridge is shutting down.
+# TYPE jitsi_shutting_down gauge
+jitsi_shutting_down {{if .ShuttingDown}}1{{else}}0{{end}}
+# HELP jitsi_num_relays_no_msg_transport_after_delay The current number of relays with no message transport after delay.
+# TYPE jitsi_num_relays_no_msg_transport_after_delay gauge
+jitsi_num_relays_no_msg_transport_after_delay {{.NumRelaysNoMsgTransportAfterDelay}}
+# HELP jitsi_average_participant_stress Average participant stress reported by the bridge.
+# TYPE jitsi_average_participant_stress gauge
+jitsi_average_participant_stress {{.AverageParticipantStress}}
+# HELP jitsi_total_packets_sent The total number of RTP packets sent.
+# TYPE jitsi_total_packets_sent gauge
+jitsi_total_packets_sent {{.TotalPacketsSent}}
+# HELP jitsi_endpoints Number of current endpoints (local and relayed).
+# TYPE jitsi_endpoints gauge
+jitsi_endpoints {{.Endpoints}}
+# HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
+# TYPE jitsi_incoming_loss gauge
+jitsi_incoming_loss {{.IncomingLoss}}
+# HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
+# TYPE jitsi_endpoints_reconnected gauge
+jitsi_endpoints_reconnected {{.EndpointsReconnected}}
+# HELP jitsi_graceful_shutdown Whether jitsi-videobridge is in graceful shutdown mode.
+# TYPE jitsi_graceful_shutdown gauge
+jitsi_graceful_shutdown {{if .GracefulShutdown}}1{{else}}0{{end}}
+# HELP jitsi_total_bytes_received The total number of RTP bytes received.
+# TYPE jitsi_total_bytes_received gauge
+jitsi_total_bytes_received {{.TotalBytesReceived}}
+# HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
+# TYPE jitsi_endpoints_disconnected gauge
+jitsi_endpoints_disconnected {{.EndpointsDisconnected}}
+# HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
+# TYPE jitsi_endpoints_sending_audio gauge
+jitsi_endpoints_sending_audio {{.EndpointsSendingAudio}}
+# HELP jitsi_dtls_failed_endpoints The total number of endpoints that failed to establish DTLS.
+# TYPE jitsi_dtls_failed_endpoints gauge
+jitsi_dtls_failed_endpoints {{.DTLSFailedEndpoints}}
+# HELP jitsi_total_bytes_sent The total number of RTP bytes sent.
+# TYPE jitsi_total_bytes_sent gauge
+jitsi_total_bytes_sent {{.TotalBytesSent}}
+# HELP jitsi_healthy Whether this bridge currently reports itself as healthy.
+# TYPE jitsi_healthy gauge
+jitsi_healthy {{if .Healthy}}1{{else}}0{{end}}
+# HELP jitsi_mucs_configured The number of configured MUCs.
+# TYPE jitsi_mucs_configured gauge
+jitsi_mucs_configured {{.MucsConfigured}}
+# HELP jitsi_mucs_joined The number of joined MUCs.
+# TYPE jitsi_mucs_joined gauge
+jitsi_mucs_joined {{.MucsJoined}}
+# HELP jitsi_version_info Jitsi Videobridge version information.
+# TYPE jitsi_version_info gauge
+jitsi_version_info{version="{{.Version}}"} 1
+# HELP jitsi_region_info Configured bridge region information.
+# TYPE jitsi_region_info gauge
+jitsi_region_info{region="{{.Region}}"} 1
+# HELP jitsi_relay_id_info Relay identifier information.
+# TYPE jitsi_relay_id_info gauge
+jitsi_relay_id_info{relay_id="{{.RelayID}}"} 1
 # HELP jitsi_conference_sizes Distribution of conference sizes
 # TYPE jitsi_conference_sizes gauge
 {{ range $key, $value := .ConferenceSizes -}}
