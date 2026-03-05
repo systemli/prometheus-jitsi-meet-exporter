@@ -185,13 +185,13 @@ jitsi_local_endpoints 0
 # HELP jitsi_total_packets_received The total number of RTP packets received.
 # TYPE jitsi_total_packets_received gauge
 jitsi_total_packets_received 0
-# HELP jitsi_preemptive_kfr_suppressed The total number of preemptive keyframe requests suppressed.
+# HELP jitsi_preemptive_kfr_suppressed Number of preemptive keyframe requests that were not sent because no endpoints were in stage view.
 # TYPE jitsi_preemptive_kfr_suppressed gauge
 jitsi_preemptive_kfr_suppressed 0
-# HELP jitsi_preemptive_kfr_sent The total number of preemptive keyframe requests sent.
+# HELP jitsi_preemptive_kfr_sent Number of preemptive keyframe requests that were sent.
 # TYPE jitsi_preemptive_kfr_sent gauge
 jitsi_preemptive_kfr_sent 0
-# HELP jitsi_total_keyframes_received The total number of keyframes received.
+# HELP jitsi_total_keyframes_received Number of keyframes that were received (updated on endpoint expiration).
 # TYPE jitsi_total_keyframes_received gauge
 jitsi_total_keyframes_received 0
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
@@ -206,13 +206,13 @@ jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
 # TYPE jitsi_total_visitors gauge
 jitsi_total_visitors 0
-# HELP jitsi_visitors The current number of visitors.
+# HELP jitsi_visitors The total number of visitor endpoints created.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
 # HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
-# HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
+# HELP jitsi_num_eps_no_msg_transport_after_delay Number of endpoints which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_eps_no_msg_transport_after_delay gauge
 jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
@@ -224,10 +224,10 @@ jitsi_outgoing_loss 0
 # HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
-# HELP jitsi_total_layering_changes_received The total number of layering changes received.
+# HELP jitsi_total_layering_changes_received Number of times the layering of an incoming video stream changed (updated on endpoint expiration).
 # TYPE jitsi_total_layering_changes_received gauge
 jitsi_total_layering_changes_received 0
-# HELP jitsi_total_relays The total number of relays connected by this bridge.
+# HELP jitsi_total_relays The total number of relays created.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 0
 # HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
@@ -236,13 +236,13 @@ jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
 # TYPE jitsi_drain gauge
 jitsi_drain 0
-# HELP jitsi_total_video_stream_milliseconds_received The total video stream milliseconds received.
+# HELP jitsi_total_video_stream_milliseconds_received Total duration of video received, in milliseconds (each SSRC counts separately).
 # TYPE jitsi_total_video_stream_milliseconds_received gauge
 jitsi_total_video_stream_milliseconds_received 0
 # HELP jitsi_shutting_down Whether jitsi-videobridge is shutting down.
 # TYPE jitsi_shutting_down gauge
 jitsi_shutting_down 0
-# HELP jitsi_num_relays_no_msg_transport_after_delay The current number of relays with no message transport after delay.
+# HELP jitsi_num_relays_no_msg_transport_after_delay Number of relays which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_relays_no_msg_transport_after_delay gauge
 jitsi_num_relays_no_msg_transport_after_delay 0
 # HELP jitsi_average_participant_stress Average participant stress reported by the bridge.
@@ -257,7 +257,7 @@ jitsi_endpoints 0
 # HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
-# HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
+# HELP jitsi_endpoints_reconnected Endpoints reconnected after being detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_reconnected gauge
 jitsi_endpoints_reconnected 0
 # HELP jitsi_graceful_shutdown Whether jitsi-videobridge is in graceful shutdown mode.
@@ -266,7 +266,7 @@ jitsi_graceful_shutdown 0
 # HELP jitsi_total_bytes_received The total number of RTP bytes received.
 # TYPE jitsi_total_bytes_received gauge
 jitsi_total_bytes_received 0
-# HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
+# HELP jitsi_endpoints_disconnected Endpoints detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 0
 # HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
@@ -548,13 +548,13 @@ jitsi_local_endpoints 0
 # HELP jitsi_total_packets_received The total number of RTP packets received.
 # TYPE jitsi_total_packets_received gauge
 jitsi_total_packets_received 266644
-# HELP jitsi_preemptive_kfr_suppressed The total number of preemptive keyframe requests suppressed.
+# HELP jitsi_preemptive_kfr_suppressed Number of preemptive keyframe requests that were not sent because no endpoints were in stage view.
 # TYPE jitsi_preemptive_kfr_suppressed gauge
 jitsi_preemptive_kfr_suppressed 0
-# HELP jitsi_preemptive_kfr_sent The total number of preemptive keyframe requests sent.
+# HELP jitsi_preemptive_kfr_sent Number of preemptive keyframe requests that were sent.
 # TYPE jitsi_preemptive_kfr_sent gauge
 jitsi_preemptive_kfr_sent 0
-# HELP jitsi_total_keyframes_received The total number of keyframes received.
+# HELP jitsi_total_keyframes_received Number of keyframes that were received (updated on endpoint expiration).
 # TYPE jitsi_total_keyframes_received gauge
 jitsi_total_keyframes_received 0
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
@@ -569,13 +569,13 @@ jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
 # TYPE jitsi_total_visitors gauge
 jitsi_total_visitors 0
-# HELP jitsi_visitors The current number of visitors.
+# HELP jitsi_visitors The total number of visitor endpoints created.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
 # HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
-# HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
+# HELP jitsi_num_eps_no_msg_transport_after_delay Number of endpoints which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_eps_no_msg_transport_after_delay gauge
 jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
@@ -587,10 +587,10 @@ jitsi_outgoing_loss 0
 # HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
-# HELP jitsi_total_layering_changes_received The total number of layering changes received.
+# HELP jitsi_total_layering_changes_received Number of times the layering of an incoming video stream changed (updated on endpoint expiration).
 # TYPE jitsi_total_layering_changes_received gauge
 jitsi_total_layering_changes_received 0
-# HELP jitsi_total_relays The total number of relays connected by this bridge.
+# HELP jitsi_total_relays The total number of relays created.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 0
 # HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
@@ -599,13 +599,13 @@ jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
 # TYPE jitsi_drain gauge
 jitsi_drain 0
-# HELP jitsi_total_video_stream_milliseconds_received The total video stream milliseconds received.
+# HELP jitsi_total_video_stream_milliseconds_received Total duration of video received, in milliseconds (each SSRC counts separately).
 # TYPE jitsi_total_video_stream_milliseconds_received gauge
 jitsi_total_video_stream_milliseconds_received 0
 # HELP jitsi_shutting_down Whether jitsi-videobridge is shutting down.
 # TYPE jitsi_shutting_down gauge
 jitsi_shutting_down 0
-# HELP jitsi_num_relays_no_msg_transport_after_delay The current number of relays with no message transport after delay.
+# HELP jitsi_num_relays_no_msg_transport_after_delay Number of relays which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_relays_no_msg_transport_after_delay gauge
 jitsi_num_relays_no_msg_transport_after_delay 0
 # HELP jitsi_average_participant_stress Average participant stress reported by the bridge.
@@ -620,7 +620,7 @@ jitsi_endpoints 0
 # HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
-# HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
+# HELP jitsi_endpoints_reconnected Endpoints reconnected after being detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_reconnected gauge
 jitsi_endpoints_reconnected 0
 # HELP jitsi_graceful_shutdown Whether jitsi-videobridge is in graceful shutdown mode.
@@ -629,7 +629,7 @@ jitsi_graceful_shutdown 0
 # HELP jitsi_total_bytes_received The total number of RTP bytes received.
 # TYPE jitsi_total_bytes_received gauge
 jitsi_total_bytes_received 257628359
-# HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
+# HELP jitsi_endpoints_disconnected Endpoints detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 0
 # HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
@@ -928,13 +928,13 @@ jitsi_local_endpoints 0
 # HELP jitsi_total_packets_received The total number of RTP packets received.
 # TYPE jitsi_total_packets_received gauge
 jitsi_total_packets_received 1362013
-# HELP jitsi_preemptive_kfr_suppressed The total number of preemptive keyframe requests suppressed.
+# HELP jitsi_preemptive_kfr_suppressed Number of preemptive keyframe requests that were not sent because no endpoints were in stage view.
 # TYPE jitsi_preemptive_kfr_suppressed gauge
 jitsi_preemptive_kfr_suppressed 100
-# HELP jitsi_preemptive_kfr_sent The total number of preemptive keyframe requests sent.
+# HELP jitsi_preemptive_kfr_sent Number of preemptive keyframe requests that were sent.
 # TYPE jitsi_preemptive_kfr_sent gauge
 jitsi_preemptive_kfr_sent 0
-# HELP jitsi_total_keyframes_received The total number of keyframes received.
+# HELP jitsi_total_keyframes_received Number of keyframes that were received (updated on endpoint expiration).
 # TYPE jitsi_total_keyframes_received gauge
 jitsi_total_keyframes_received 485
 # HELP jitsi_total_dominant_speaker_changes The total number of dominant speaker changes.
@@ -949,13 +949,13 @@ jitsi_receive_only_endpoints 0
 # HELP jitsi_total_visitors The total number of visitors since startup.
 # TYPE jitsi_total_visitors gauge
 jitsi_total_visitors 0
-# HELP jitsi_visitors The current number of visitors.
+# HELP jitsi_visitors The total number of visitor endpoints created.
 # TYPE jitsi_visitors gauge
 jitsi_visitors 0
 # HELP jitsi_num_eps_oversending Number of endpoints that we are oversending to.
 # TYPE jitsi_num_eps_oversending gauge
 jitsi_num_eps_oversending 0
-# HELP jitsi_num_eps_no_msg_transport_after_delay The current number of endpoints with no message transport after delay.
+# HELP jitsi_num_eps_no_msg_transport_after_delay Number of endpoints which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_eps_no_msg_transport_after_delay gauge
 jitsi_num_eps_no_msg_transport_after_delay 0
 # HELP jitsi_muc_clients_configured The number of configured XMPP MUC clients.
@@ -967,10 +967,10 @@ jitsi_outgoing_loss 0
 # HELP jitsi_overall_loss Fraction of RTP packets that are lost (incoming and outgoing combined).
 # TYPE jitsi_overall_loss gauge
 jitsi_overall_loss 0
-# HELP jitsi_total_layering_changes_received The total number of layering changes received.
+# HELP jitsi_total_layering_changes_received Number of times the layering of an incoming video stream changed (updated on endpoint expiration).
 # TYPE jitsi_total_layering_changes_received gauge
 jitsi_total_layering_changes_received 29
-# HELP jitsi_total_relays The total number of relays connected by this bridge.
+# HELP jitsi_total_relays The total number of relays created.
 # TYPE jitsi_total_relays gauge
 jitsi_total_relays 13
 # HELP jitsi_endpoints_with_high_outgoing_loss Number of endpoints that have high outgoing loss (>10%).
@@ -979,13 +979,13 @@ jitsi_endpoints_with_high_outgoing_loss 0
 # HELP jitsi_drain Whether the bridge is draining and should avoid new conference allocation.
 # TYPE jitsi_drain gauge
 jitsi_drain 0
-# HELP jitsi_total_video_stream_milliseconds_received The total video stream milliseconds received.
+# HELP jitsi_total_video_stream_milliseconds_received Total duration of video received, in milliseconds (each SSRC counts separately).
 # TYPE jitsi_total_video_stream_milliseconds_received gauge
 jitsi_total_video_stream_milliseconds_received 3357131
 # HELP jitsi_shutting_down Whether jitsi-videobridge is shutting down.
 # TYPE jitsi_shutting_down gauge
 jitsi_shutting_down 0
-# HELP jitsi_num_relays_no_msg_transport_after_delay The current number of relays with no message transport after delay.
+# HELP jitsi_num_relays_no_msg_transport_after_delay Number of relays which had not established a relay message transport even after some delay.
 # TYPE jitsi_num_relays_no_msg_transport_after_delay gauge
 jitsi_num_relays_no_msg_transport_after_delay 0
 # HELP jitsi_average_participant_stress Average participant stress reported by the bridge.
@@ -1000,7 +1000,7 @@ jitsi_endpoints 0
 # HELP jitsi_incoming_loss Fraction of incoming RTP packets that are lost.
 # TYPE jitsi_incoming_loss gauge
 jitsi_incoming_loss 0
-# HELP jitsi_endpoints_reconnected The total number of endpoints that reconnected.
+# HELP jitsi_endpoints_reconnected Endpoints reconnected after being detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_reconnected gauge
 jitsi_endpoints_reconnected 0
 # HELP jitsi_graceful_shutdown Whether jitsi-videobridge is in graceful shutdown mode.
@@ -1009,7 +1009,7 @@ jitsi_graceful_shutdown 0
 # HELP jitsi_total_bytes_received The total number of RTP bytes received.
 # TYPE jitsi_total_bytes_received gauge
 jitsi_total_bytes_received 759150207
-# HELP jitsi_endpoints_disconnected The total number of endpoints that disconnected.
+# HELP jitsi_endpoints_disconnected Endpoints detected as temporarily inactive/disconnected due to inactivity.
 # TYPE jitsi_endpoints_disconnected gauge
 jitsi_endpoints_disconnected 2
 # HELP jitsi_endpoints_sending_audio The number of local endpoints sending audio.
