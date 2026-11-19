@@ -59,6 +59,8 @@ jobs:
         with:
           app-id: ${{ vars.SYSTEMLI_APP_ID }}
           private-key: ${{ secrets.SYSTEMLI_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
 
       - name: Merge
         uses: fastify/github-action-merge-dependabot@v3
