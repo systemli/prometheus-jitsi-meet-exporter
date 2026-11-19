@@ -55,9 +55,10 @@ jobs:
     steps:
       - name: Obtain Access Token
         id: acces_token
-        run: |
-          TOKEN="$(npx obtain-github-app-installation-access-token ci ${{ secrets.SYSTEMLI_APP_CREDENTIALS_TOKEN }})"
-          echo "token=$TOKEN" >> $GITHUB_OUTPUT
+        uses: actions/create-github-app-token@f418cff399f7aef4c2f0ad47e25ca7a6abbdd6fc # v3.4.0
+        with:
+          app-id: ${{ vars.SYSTEMLI_APP_ID }}
+          private-key: ${{ secrets.SYSTEMLI_APP_PRIVATE_KEY }}
 
       - name: Merge
         uses: fastify/github-action-merge-dependabot@v3
