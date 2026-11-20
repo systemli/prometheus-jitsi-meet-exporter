@@ -46,6 +46,7 @@ jobs:
   automerge:
     name: Merge Automatically
     needs: [test, build]
+    if: ${{ github.event_name == 'pull_request' && github.actor == 'dependabot[bot]' }}
     runs-on: ubuntu-24.04
 
     permissions:
@@ -63,6 +64,8 @@ jobs:
           permission-pull-requests: write
 
       - name: Merge
-        uses: fastify/github-action-merge-dependabot@v3
-        with:
-          github-token: ${{ steps.acces_token.outputs.token }}
+        env:
+          GH_TOKEN: ${{ steps.acces_token.outputs.token }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+        run: gh pr merge "$PR_NUMBER" --admin --squash --delete-branch
